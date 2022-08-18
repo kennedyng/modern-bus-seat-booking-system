@@ -6,6 +6,124 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Passenger {
+  id           Int    @id @default(autoincrement())
+  password     String @db.VarChar(4)
+  phone_number String @db.VarChar(255)
+
+  //has many receipts
+  receipt Receipt[]
+
+  //has one profile
+  profile PassengerProfile?
+
+  @@map("passenger")
+}
+
+model PassengerProfile {
+  id           Int      @id @default(autoincrement())
+  first_name   String   @db.VarChar(50)
+  last_name    String   @db.VarChar(50)
+  middle_name  String?  @db.VarChar(50)
+  nrc          String   @db.VarChar(20)
+  address      String?  @db.VarChar(255)
+  time_created DateTime @default(now())
+  time_updated DateTime @updatedAt
+
+  passenger   Passenger @relation(fields: [passengerId], references: [id], onDelete: Cascade)
+  passengerId Int       @unique
+
+  @@map("passengerProfile")
+}
+
+model Receipt {
+  id             Int        @id @default(autoincrement())
+  method_of_pay  String
+  transaction_id String
+  amount_payed   Float
+  time_created   DateTime   @default(now())
+  Trip           Trip?      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  tripId         Int?
+  Passenger      Passenger? @relation(fields: [passengerId], references: [id], onDelete: Cascade)
+  passengerId    Int?
+
+  @@map("receipt")
+}
+
+model Bus {
+  id           Int       @id @default(autoincrement())
+  plate_number String    @db.VarChar(50)
+  total_seat   Int
+  Operator     Operator? @relation(fields: [operatorId], references: [id], onDelete: Cascade)
+  operatorId   Int?
+
+  //has many trips
+  trip Trip[]
+
+  @@map("bus")
+}
+
+model Route {
+  id             Int       @id @default(autoincrement())
+  starting_point String    @db.VarChar(100)
+  ending_point   String    @db.VarChar(100)
+  fare           Float
+  Operator       Operator? @relation(fields: [operatorId], references: [id], onDelete: Cascade)
+  operatorId     Int?
+
+  //has many trips
+  trip Trip[]
+
+  @@map("route")
+}
+
+model Trip {
+  id             Int       @id @default(autoincrement())
+  departing_time DateTime
+  Operator       Operator? @relation(fields: [operatorId], references: [id], onDelete: Cascade)
+  operatorId     Int?
+
+  //has many receipts
+  receipt Receipt[]
+  Route   Route?    @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  routeId Int?
+  Bus     Bus?      @relation(fields: [busId], references: [id], onDelete: Cascade)
+  busId   Int?
+
+  @@map("trip")
+}
+
+model Operator {
+  id       Int    @id @default(autoincrement())
+  password String @db.VarChar(255)
+  email    String @db.VarChar(255)
+
+  //has many trips
+  trip  Trip[]
+  //has many routes
+  route Route[]
+  //has many buses
+  bus   Bus[]
+
+  profile OperatorProfile?
+
+  @@map("operator")
+}
+
+model OperatorProfile {
+  id           Int      @id @default(autoincrement())
+  company_name String   @db.VarChar(100)
+  motto        String   @db.VarChar(255)
+  logo_pic     String?
+  time_created DateTime @default(now())
+  time_updated DateTime @updatedAt
+
+  operator   Operator @relation(fields: [operatorId], references: [id], onDelete: Cascade)
+  operatorId Int      @unique
+
+  @@map("operatorProfile")
 }
