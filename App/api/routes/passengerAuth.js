@@ -10,9 +10,6 @@ router.post('/register', (req, res) => {
     res.send("Passenger Register In");
 })
 
-
-
-
 router.put('/edit', (req, res) => {
     res.send("Passenger Edit Details");
 })

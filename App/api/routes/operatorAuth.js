@@ -2,8 +2,10 @@ const express = require("express");
 const router = express();
 const jwt = require("jsonwebtoken");
 
+
 router.get('/login', (req, res) => {
     res.send("Operator Login In");
+    
 })
 
 

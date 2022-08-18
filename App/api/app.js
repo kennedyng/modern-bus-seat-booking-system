@@ -5,12 +5,13 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser')
 
-
+//routes imports
 const passengerAuthRouter = require("./routes/passengerAuth");
 const operatorAuthRouter = require("./routes/operatorAuth");
-
 const passengerProfileRouter = require("./routes/passengerProfile");
 
+const operatorProfileRouter = require("./routes/operatorProfile");
+const tripRouter = require("./routes/trip");
 
 
 app.use(express.json());
@@ -19,13 +20,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.use(cors());
-
+app.use('/trip', tripRouter);
 //authentications routes
 app.use('/auth/passenger', passengerAuthRouter);
 app.use('/auth/operator', operatorAuthRouter);
 
 
 app.use('/passenger/profile', passengerProfileRouter);
+app.use('/operator/profile', operatorProfileRouter);
+
+
 
 app.listen( process.env.port ||port, () => {
   console.log(`Modern E bus system running at port ${port}`)
