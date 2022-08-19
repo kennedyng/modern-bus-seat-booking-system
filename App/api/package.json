@@ -16,7 +16,8 @@
     "cors": "^2.8.5",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "prisma-offset-pagination": "^0.0.4"
   },
   "devDependencies": {
     "prisma": "^4.2.1"

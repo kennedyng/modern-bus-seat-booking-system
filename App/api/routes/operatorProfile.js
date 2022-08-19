@@ -1,9 +1,36 @@
 const express = require("express");
 const { PrismaClient } = require('@prisma/client');
+const pagination = require("../middlewares/pagination");
+
+
 
 const router = express();
 
 const prisma = new PrismaClient();
+
+
+//all operators profile
+router.get('/view/all' , async(req, res) => {
+    try {
+        const totalCount = await prisma.operatorProfile.count();
+        const {limit, skip, totalPages } = pagination.getPaginationVar({
+            page: req.query.page,
+            size: req.query.size,
+            totalCount
+        });
+        const data  = await prisma.operatorProfile.findMany({
+            skip: skip, 
+            take: limit,
+        });
+    res.status(201).json({data, totalPages})    
+    } catch (error) {
+        res.sendStatus(500).json(error)
+        
+    }
+    
+   
+})
+
 
 router.get('/view/:operatorId', async(req, res) => {
     try {
@@ -30,13 +57,12 @@ router.get('/view/:operatorId', async(req, res) => {
 })
 
 
-router.post('/create/:operatorId', async(req, res) => {
+router.post('/create/operatorId', async(req, res) => {
     try {
        const createProfile = await prisma.operatorProfile.create({
            data: {
                ...req.body,
                operatorId : Number(req.params.operatorId)
-               
             }
        })
        res.status(201).json({
