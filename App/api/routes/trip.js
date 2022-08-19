@@ -43,6 +43,20 @@ router.get('/view/all/:operatorId', async(req, res) => {
     }
     
 })
+
+router.get('/view/:starting_point/:ending_point', async(req, res) => {
+    try {
+       // get trip based on starting point and ending point
+        console.log("data", data);
+          
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error})
+        
+    }
+    
+})
+
 router.post('/create', async(req, res) => {
     try {
         const createTrip = await prisma.trip.create({
