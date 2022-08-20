@@ -13,6 +13,7 @@ const passengerProfileRouter = require("./routes/passengerProfile");
 const operatorProfileRouter = require("./routes/operatorProfile");
 const tripRouter = require("./routes/trip");
 const routeRouter = require('./routes/route');
+const receiptRouter = require('./routes/receipt');
 
 
 
@@ -32,7 +33,8 @@ app.use('/passenger/profile', passengerProfileRouter);
 app.use('/operator/profile', operatorProfileRouter);
 
 app.use('/trip', tripRouter);
-app.use('/route', routeRouter)
+app.use('/route', routeRouter);
+app.use('/receipt', receiptRouter)
 app.listen( process.env.port ||port, () => {
   console.log(`Modern E bus system running at port ${port}`)
 })

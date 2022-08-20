@@ -44,13 +44,55 @@ router.get('/view/all/:operatorId', async(req, res) => {
     
 })
 
-router.get('/view/:starting_point/:ending_point', async(req, res) => {
+router.get('/view/:starting_point/:ending_point/:operatorId', async(req, res) => {
     try {
-       // get trip based on starting point and ending point
-        console.log("data", data);
-          
+    
+    const totalItems = await prisma.trip.findMany({
+        where: {
+            Route: {
+                starting_point: req.params.starting_point,
+                AND: {
+                    ending_point: req.params.ending_point
+                }
+        },
+        operatorId: Number(req.params.operatorId)
+        },
+        include: {
+            Route: true,
+            Bus: true
+        },
+        orderBy: {
+            departing_time: "desc"
+        }
+    })
+
+    const {totalPages, skip, limit } =  pagination.getPaginationVar({
+        page: req.query.page,
+        size: req.query.size,
+        totalCount: totalItems.length
+    })
+       const data = await prisma.trip.findMany({
+           where: {
+              Route: {
+                  starting_point: req.params.starting_point,
+                  AND: {
+                      ending_point: req.params.ending_point
+                  }
+              },
+              operatorId: Number(req.params.operatorId)
+           },
+           include: {
+               Route: true,
+               Bus: true
+           },
+           orderBy: {
+               departing_time: "desc"
+           },
+           skip: skip,
+           take: limit
+       })
+        res.status(201).json({data, totalPages}) 
     } catch (error) {
-        console.log(error)
         res.status(500).json({error})
         
     }
