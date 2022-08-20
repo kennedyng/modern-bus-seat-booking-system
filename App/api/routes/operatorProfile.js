@@ -2,7 +2,7 @@ const express = require("express");
 const { PrismaClient } = require('@prisma/client');
 const pagination = require("../middlewares/pagination");
 
-
+const checKAuth = require("../middlewares/auth-check");
 
 const router = express();
 
@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 
 
 //all operators profile
-router.get('/view/all' , async(req, res) => {
+router.get('/view/all', async(req, res) => {
     try {
         const totalCount = await prisma.operatorProfile.count();
         const {limit, skip, totalPages } = pagination.getPaginationVar({
@@ -57,28 +57,7 @@ router.get('/view/:operatorId', async(req, res) => {
 })
 
 
-router.post('/create/operatorId', async(req, res) => {
-    try {
-       const createProfile = await prisma.operatorProfile.create({
-           data: {
-               ...req.body,
-               operatorId : Number(req.params.operatorId)
-            }
-       })
-       res.status(201).json({
-           createProfile,
-           message: "created successfully"
-       })
-    } catch (error) {
-        
-        res.status(500).json({
-            error
-        })
-    }
-})
-
-
-router.patch('/update/:operatorId',async (req, res) => {
+router.patch('/update/:operatorId', checKAuth,async (req, res) => {
     try {
         updateProfile = await prisma.operatorProfile.update({
             data: {
@@ -90,7 +69,8 @@ router.patch('/update/:operatorId',async (req, res) => {
         })
         res.status(201).json({
             updateProfile,
-            message: "updated successfully"
+            message: "updated successfully",
+            userData: req.userData
         })
     } catch (error) {
         res.status(500).json({
@@ -99,22 +79,6 @@ router.patch('/update/:operatorId',async (req, res) => {
     }
 })
 
-router.delete('/delete/:operatorId', async (req, res) => {
-    try {
-        const deleteProfile = await prisma.operatorProfile.delete({
-            where: {
-                operatorId: Number(req.params.operatorId)
-            }
-        })
-        res.status(201).json({
-            deleteProfile,
-            message:"deleted successfully"
-        })
-    } catch (error) {
-        res.status(500).json({
-            error,
-        })
-    }
-})
+
 
 module.exports = router;
