@@ -6,6 +6,7 @@ const router = express();
 
 router.get('/view/:passengerId', receiptController.getPassengerReceipts)
 router.get('/view/all/:operatorId', receiptController.getOperatorRecipts )
+router.get('/view/one/:receiptId', receiptController.getReceipt)
 router.post('/create', receiptController.createReceipt )
 
 

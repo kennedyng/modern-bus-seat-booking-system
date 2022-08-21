@@ -49,6 +49,31 @@ module.exports = {
         }
     },
 
+    getReceipt:  async( req, res) => {
+        try {
+            const receiptData = await prisma.receipt.findUnique({
+                where: {
+                    id: Number(req.params.receiptId)
+                },
+                include: {
+                    Trip: {
+                        include: {
+                            Bus: true,
+                            Route: true
+                        }
+                    }
+                }
+    
+            })
+    
+            res.status(201).json(receiptData)
+        } catch (error) {
+            res.status(500).json(error)
+            
+        }
+    },
+
+
     getOperatorRecipts: async( req, res) => {
         try {
     

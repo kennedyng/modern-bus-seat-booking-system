@@ -2,10 +2,6 @@ const { PrismaClient } = require('@prisma/client');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-
-
-
-
 const prisma = new PrismaClient();
 
 module.exports = {
@@ -47,10 +43,6 @@ module.exports = {
         }
         
     },
-
-
-
-
 
 
     register: async(req, res) => {
