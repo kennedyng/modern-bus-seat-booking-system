@@ -38,7 +38,7 @@ module.exports = {
             })
             res.status(201).json({data, totalPages})
         } catch (error) {
-            res.status(500).json({error})
+            res.status(500).json(error)
             
         }
         
@@ -92,10 +92,37 @@ module.exports = {
            })
             res.status(201).json({data, totalPages}) 
         } catch (error) {
-            res.status(500).json({error})
+            res.status(500).json(error)
             
         }
         
+    },
+
+
+    getOneTrip:  async(req, res) => {
+     try {
+         const data = await prisma.trip.findUnique({
+             where: {
+                 id: Number(req.params.tripId)
+             },
+             include: {
+                 Route: true,
+                 Bus: true,
+                 Operator: {
+                     select: {
+                         email: true
+                     }
+                 }
+
+             }
+         })
+
+         res.send(data)
+     } catch (error) {
+         console.log(error)
+         res.status(500).json(error);
+         
+     }
     },
     createTrip: async(req, res) => {
         try {

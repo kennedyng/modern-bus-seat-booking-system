@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express();
 const operatorProfileController = require("../controllers/operator/profile");
-
+const checkAuth = require("../middlewares/auth-check")
 router.get('/view/all', operatorProfileController.getAllOperatorProfiles)
-router.get('/view/:operatorId', operatorProfileController.getOperatorProfile )
-router.patch('/update/:operatorId', operatorProfileController.updateOperatorProfile )
+router.get('/view',checkAuth, operatorProfileController.getOperatorProfile )
+router.patch('/update', checkAuth, operatorProfileController.updateOperatorProfile )
 
 
 module.exports = router;

@@ -40,7 +40,6 @@ module.exports = {
             
         } catch (error) {
 
-            console.log(error)
             res.status(500).json(error)
             
         }
@@ -56,10 +55,11 @@ module.exports = {
                     email: req.body.email
                 }
             })
-    
             if(userExist){
+                
                 return res.status(409).json({message: "Email is used"})
             }else{
+                
                 bcrypt.hash(req.body.password, 10, async(err, hash) => {
                     if(err){
                         return res.status(500);
@@ -69,7 +69,7 @@ module.exports = {
                             data: {
                                 company_name: req.body.company_name,
                                 motto: req.body.motto,
-                                logo_pic: req.body.logo_pic,
+                                logo_pic: req.file.path,
                                 operator: {
                                     create: {
                                         password: hash,
@@ -85,6 +85,7 @@ module.exports = {
             }
             
         } catch (error) {
+            console.log("error", error)
             res.status(500).json(error)
             
         }

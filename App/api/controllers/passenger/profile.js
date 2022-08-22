@@ -10,7 +10,7 @@ module.exports = {
             const { passengerId } = req.params;
             data = await prisma.passengerProfile.findUnique({
                 where: {
-                    passengerId: Number(passengerId)
+                    passengerId: Number(req.userData.passengerId)
                 },
                include: {
                    passenger: {
@@ -36,7 +36,7 @@ module.exports = {
                     ...req.body
                 },
                 where: {
-                    passengerId: Number(req.params.passengerId)
+                    passengerId: Number(req.userData.passengerId)
                 }
             })
             res.status(201).json({
@@ -54,7 +54,7 @@ module.exports = {
         try {
             const deleteProfile = await prisma.passengerProfile.delete({
                 where: {
-                    passengerId: Number(req.params.passengerId)
+                    passengerId: Number(req.userData.passengerId)
                 }
             })
             res.status(201).json({

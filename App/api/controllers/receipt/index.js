@@ -13,7 +13,7 @@ module.exports = {
     
             const totalItems = await prisma.receipt.count({
                 where: {
-                    passengerId: Number(req.params.passengerId)
+                    passengerId: Number(req.userData.passengerId)
                 }
             })
     
@@ -24,7 +24,7 @@ module.exports = {
             })
             const receiptData = await prisma.receipt.findMany({
                 where: {
-                    passengerId: Number(req.params.passengerId)
+                    passengerId: Number(req.userData.passengerId)
                 },
                 include: {
                     Trip: {
@@ -80,7 +80,7 @@ module.exports = {
             const totalItems = await prisma.receipt.count({
                 where: {
                     Trip: {
-                        operatorId: Number(req.params.operatorId)
+                        operatorId: Number(req.userData.operatorId)
                     }
                 }
             })
@@ -93,7 +93,7 @@ module.exports = {
             const data = await prisma.receipt.findMany({
                 where: {
                     Trip: {
-                        operatorId: Number(req.params.operatorId)
+                        operatorId: Number(req.userData.operatorId)
                     }
                 },
                 include: {
@@ -123,7 +123,7 @@ module.exports = {
                     method_of_pay: req.body.method_of_pay,
                     transaction_id: req.body.transaction_id,
                     amount_payed: parseFloat(req.body.amount_payed),
-                    passengerId: Number(req.body.passengerId),
+                    passengerId: Number(req.userData.passengerId),
                     tripId: Number(req.body.tripId)
                 }
             })

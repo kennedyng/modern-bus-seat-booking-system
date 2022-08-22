@@ -1,5 +1,5 @@
 module.exports = {
-    // return pagination variable. skip, limit, and total pages
+    
     getPaginationVar: ({page = 1, size = 5, totalCount}) => {
         page = parseInt(page);
         size = parseInt(size);
@@ -11,6 +11,9 @@ module.exports = {
             page = totalPages
         }
         const skip = (page - 1) * size;
+        if( skip < 0){
+            skip = 0;
+        }
         return {
             skip,
             limit: size,

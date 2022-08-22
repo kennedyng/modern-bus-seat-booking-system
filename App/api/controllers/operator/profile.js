@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const pagination = require("../../middlewares/pagination");
+const { path } = require('../../routes/trip');
 const prisma = new PrismaClient();
 
 
@@ -31,7 +32,7 @@ module.exports= {
             const { operatorId } = req.params;
             data = await prisma.operatorProfile.findUnique({
                 where: {
-                    operatorId: Number(operatorId)
+                    operatorId: Number(req.userData.operatorId)
                 },
                include: {
                    operator: {
@@ -50,7 +51,6 @@ module.exports= {
         }
     },
 
-
     updateOperatorProfile: async (req, res) => {
         try {
             updateProfile = await prisma.operatorProfile.update({
@@ -58,7 +58,7 @@ module.exports= {
                     ...req.body
                 },
                 where: {
-                    operatorId: Number(req.params.operatorId)
+                    operatorId: Number(req.userData.operatorId)
                 }
             })
             res.status(201).json({
