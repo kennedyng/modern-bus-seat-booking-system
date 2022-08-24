@@ -37,8 +37,6 @@ app.use('/receipt', receiptRouter);
 app.use('/bus', busRouter);
 app.use('/accounts', accountsRouter);
 
-
-
-app.listen( process.env.PORT ||port, () => {
-  console.log(`Modern E bus system running at port ${port}`)
+app.listen( process.env.PORT || port, () => {
+  console.log(`Modern E bus system running at port ${ process.env.Port || port}`)
 })
