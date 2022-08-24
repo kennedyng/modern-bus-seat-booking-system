@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require("cors");
 const app = express();
 const port = 3000;
-const bodyParser = require('body-parser')
+/*const bodyParser = require('body-parser')
 
 //routes imports
 const passengerAuthRouter = require("./routes/passengerAuth");
@@ -35,10 +35,12 @@ app.use('/trip', tripRouter);
 app.use('/route', routeRouter);
 app.use('/receipt', receiptRouter);
 app.use('/bus', busRouter);
-app.use('/accounts', accountsRouter);
+app.use('/accounts', accountsRouter);*/
 
 
-
+app.get("/", (req, res) => {
+  res.send("Hello world")
+})
 app.listen( process.env.port ||port, () => {
   console.log(`Modern E bus system running at port ${port}`)
 })
