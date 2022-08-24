@@ -20,6 +20,7 @@ module.exports= {
             });
         res.status(201).json({data, totalPages})    
         } catch (error) {
+            console.log("Error:", error)
             res.sendStatus(500).json(error)
             
         }
