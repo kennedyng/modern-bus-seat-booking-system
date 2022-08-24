@@ -38,5 +38,5 @@ app.use('/bus', busRouter);
 app.use('/accounts', accountsRouter);
 
 app.listen( process.env.PORT || port, () => {
-  console.log(`Modern E bus system running at port ${ process.env.Port || port}`)
+  console.log(`Modern E bus system running at port ${ process.env.PORT || port}`)
 })
