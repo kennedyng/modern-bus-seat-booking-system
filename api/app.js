@@ -39,6 +39,6 @@ app.use('/accounts', accountsRouter);
 
 
 
-app.listen( process.env.port ||port, () => {
+app.listen( process.env.PORT ||port, () => {
   console.log(`Modern E bus system running at port ${port}`)
 })
