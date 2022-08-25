@@ -69,7 +69,7 @@ module.exports = {
                             data: {
                                 company_name: req.body.company_name,
                                 motto: req.body.motto,
-                                logo_pic: req.file.path,
+                                logo_pic: req.file.path ? req.file.path: null,
                                 operator: {
                                     create: {
                                         password: hash,

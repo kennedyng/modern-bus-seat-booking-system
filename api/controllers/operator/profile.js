@@ -1,30 +1,20 @@
 const { PrismaClient } = require('@prisma/client');
 const pagination = require("../../middlewares/pagination");
-const { path } = require('../../routes/trip');
+
 const prisma = new PrismaClient();
 
 
 module.exports= {
 
-    getAllOperatorProfiles: async(req, res) => {
-        try {
-            const totalCount = await prisma.operatorProfile.count();
-            const {limit, skip, totalPages } = pagination.getPaginationVar({
-                page: req.query.page,
-                size: req.query.size,
-                totalCount
-            });
-            const data  = await prisma.operatorProfile.findMany({
-                skip: skip, 
-                take: limit,
-            });
-        res.status(201).json({data, totalPages})    
-        } catch (error) {
-            console.log("Error:", error)
-            res.sendStatus(500).json(error)
-            
-        }
-          
+    getAllOperatorProfiles: async(req, res, next) => {
+       try {
+           const total = await prisma.passengerProfile.count();
+           const data = await prisma.passengerProfile.findMany()
+           req.modelData = {total, data}
+           next();
+       } catch (error) {
+           res.status(500).json({error})
+       }
     },
 
 

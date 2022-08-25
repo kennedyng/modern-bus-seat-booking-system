@@ -9,40 +9,6 @@ const prisma = new PrismaClient();
 
 module.exports = {
 
-    getOperatorTrips: async(req, res) => {
-        try {
-            const totalCount =  await prisma.trip.count({
-                where: {
-                    operatorId: Number(req.params.operatorId)
-                }
-            })
-            const { limit, skip, totalPages } = pagination.getPaginationVar({
-                page: req.query.page,
-                size: req.query.size,
-                totalCount
-            })
-            const data = await prisma.trip.findMany({
-                where: {
-                    operatorId: Number(req.params.operatorId),
-                },
-                orderBy: {
-                    departing_time: "desc"
-    
-                },
-                include: {
-                    Route: true,
-                    Bus: true
-                },
-                skip: skip,
-                take: limit
-            })
-            res.status(201).json({data, totalPages})
-        } catch (error) {
-            res.status(500).json(error)
-            
-        }
-        
-    },
 
     getTrip:  async(req, res) => {
         try {   
