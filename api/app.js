@@ -17,6 +17,10 @@ const busRouter = require("./routes/bus");
 const accountsRouter = require("./routes/accounts");
 
 
+const swaggerDoc = require("swagger-ui-express");
+const swaggerDocumentation = require("./helper/documentation")
+
+
 app.use(express.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -36,6 +40,11 @@ app.use('/route', routeRouter);
 app.use('/receipt', receiptRouter);
 app.use('/bus', busRouter);
 app.use('/accounts', accountsRouter);
+
+//documentation route
+app.use("/documentation", swaggerDoc.serve)
+app.use("/documentation", swaggerDoc.setup(swaggerDocumentation))
+
 
 app.listen( process.env.PORT || port, () => {
   console.log(`Modern E bus system running at port ${ process.env.PORT || port}`)
