@@ -29,7 +29,7 @@ const upload = multer(
         }
     }
 )
-router.get('/login', operatorController.logIn)
+router.post('/login', operatorController.logIn)
 router.post('/register', upload.single('logo_pic'), operatorController.register )
 
 

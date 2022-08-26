@@ -21,7 +21,7 @@ const paginateData = ( {totalQuery, dataQuery,  intialDataSize, model}) => {
            })
            .then( data => {
                 const totalPages = Math.ceil(totalItems.length / size);
-                res.status(201).json({totalPages, data})
+                res.status(200).json({totalPages, data})
                 next();
            })
            .catch( error =>  {

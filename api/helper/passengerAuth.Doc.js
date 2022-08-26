@@ -1,4 +1,5 @@
 
+const {  status500Object } = require("./shared.Docs")
 
 const registerPassenger = {
     tags:["passenger authorization"],
@@ -7,8 +8,21 @@ const registerPassenger = {
 
 const passengerLogin = {
     tags:["passenger authorization"],
-    description: "login ",
-    summary: "create a new passenger account",
+    description: "login as a passenger by providing the phone number and the password.",
+    summary: "login as a passenger",
+
+    requestBody: {
+        content: {
+            "application/json": {
+                schema:{
+                    type: "object",
+                    
+                }
+            }
+        }
+
+    },
+    
    
     
     
@@ -20,18 +34,26 @@ const passengerLogin = {
                     schema: {
                         type: "object",
                         example: {
-                            token: "",
+                            token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzZW5nZXJJZCI6MSwicGhvbmVfbnVtYmVyIjoiMSIsImlhdCI6MTY2MTUzOTI2MSwiZXhwIjoxNjYxNTQyODYxfQ.WAOFjHOQTV2U9fUvGvL02v-y8jAo9pUw1CElF5AMg40`,
+                            message: "successfully authorized"
 
                         }
                     }
                 }
             }
         },
-        500: {
+       
+        500: status500Object,
+
+        403: {
             content: {
                 "application/json": {
                     schema: {
                         type: "object",
+                        example: {
+                            message: "authorization failed"
+                        }
+                        
                     }
                 }
             }
@@ -39,7 +61,8 @@ const passengerLogin = {
         },
       
         
-    }
+    },
+    
 } 
 
 const passengerAuth = {
@@ -48,7 +71,7 @@ const passengerAuth = {
     },
 
     "/auth/passenger/login": {
-        get: passengerLogin
+        post: passengerLogin
     }
 
 }

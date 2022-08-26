@@ -9,7 +9,7 @@ const router = express();
 
 const passengerAuthController = require("../controllers/passenger/auth")
 
-router.get('/login', passengerAuthController.logIn)
+router.post('/login', passengerAuthController.logIn)
 router.post('/register', passengerAuthController.register )
 
 

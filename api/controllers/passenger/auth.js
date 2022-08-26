@@ -29,16 +29,16 @@ module.exports = {
                            expiresIn: "1h"
                        })
                     
-                       return res.status(201).json({message: "authorization sucessfull", token})
+                       return res.status(200).json({message: "authorization sucessfull", token})
                    }
                 })
             
             }else{
-                res.status(500).json(console.error)
+                res.status(403).json({ message: "authorization failed"})
             }
             
         } catch (error) {
-            console.log(error)
+                res.status(500).json(error)
             
         }
         
