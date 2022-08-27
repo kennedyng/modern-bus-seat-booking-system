@@ -16,11 +16,6 @@ const receiptRouter = require('./routes/receipt');
 const busRouter = require("./routes/bus");
 const accountsRouter = require("./routes/accounts");
 
-
-const { status500Object } = require("./helper/shared.Docs")
-console.log(status500Object)
-
-
 const swaggerDoc = require("swagger-ui-express");
 const swaggerDocumentation = require("./helper/documentation")
 

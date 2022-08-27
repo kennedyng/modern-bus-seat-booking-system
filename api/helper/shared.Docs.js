@@ -56,6 +56,9 @@ const status500Object = {
         "application/json": {
             schema: {
                 type: "object",
+                example:{
+                    "clientVersion": "4.2.1"
+                  }
                 
             }
         }

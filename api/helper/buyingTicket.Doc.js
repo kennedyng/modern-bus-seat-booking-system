@@ -163,6 +163,7 @@ const tripDetail = {
                 "application/json": {
                     schema: {
                         type: "object",
+                       
                         example: {
                             "totalPages": 2,
                             "data": [

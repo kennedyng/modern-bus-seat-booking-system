@@ -10,18 +10,17 @@ const passengerLogin = {
     tags:["passenger authorization"],
     description: "login as a passenger by providing the phone number and the password.",
     summary: "login as a passenger",
-
     requestBody: {
         content: {
             "application/json": {
-                schema:{
-                    type: "object",
-                    
+                schema: {
+                    $ref: "#/components/schemas/passenger"
                 }
             }
         }
-
     },
+
+    
     
    
     

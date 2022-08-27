@@ -13,7 +13,7 @@ datasource db {
 model Passenger {
   id           Int    @id @default(autoincrement())
   password     String @db.VarChar(255)
-  phone_number String @db.VarChar(255)
+  phone_number String @unique @db.VarChar(255)
 
   //has many receipts
   receipt Receipt[]
@@ -100,7 +100,7 @@ model Trip {
 model Operator {
   id       Int    @id @default(autoincrement())
   password String @db.VarChar(255)
-  email    String @db.VarChar(255)
+  email    String @unique @db.VarChar(255)
 
   //has many trips
   trip  Trip[]

@@ -9,7 +9,7 @@ module.exports = {
     logIn: async(req, res) => {
         try {
          
-            const passenger = await prisma.passenger.findFirst({
+            const passenger = await prisma.passenger.findUnique({
                 where: {
                     phone_number: req.body.phone_number
                 }
