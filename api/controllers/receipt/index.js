@@ -29,7 +29,7 @@ module.exports = {
     
             res.status(201).json(receiptData)
         } catch (error) {
-            res.status(500).json(error)
+            res.status(500).json({error})
             
         }
     },

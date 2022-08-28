@@ -1,3 +1,4 @@
+
 const passengerSchema = {
     passenger: {
         type: "object",
@@ -63,6 +64,60 @@ const passengerProfileSchema = {
 }
 
 
+const passengerCreateProfileSchema = {
+    passengerCreateProfile: {
+        type: "object",
+        required: [
+            "first_name",
+            "last_name",
+            "nrc",
+            "phone_number",
+            "password"
+        ],
+        properties: {
+            first_name: {
+                type: "string",
+                example: "kennedy"
+            }, 
+            middle_name: {
+                type: "string",
+                example: "chanda"
+            }, 
+            last_name: {
+                type: "string",
+                example: "ngosa"
+            }, 
+            nrc: {
+                type: "string",
+                example: "347160/10/1"
+            }, 
+            address: {
+                type: "string",
+                example: "50/23 new kamwala ma plot"
+            }, 
+            passengerId: {
+                type: "integer",
+                example: "1"
+            },
+            phone_number: {
+                type: "string",
+                example: "0978329482"
+            },
+            password: {
+                type: "string",
+                example: "1234"
+            },
+            
+            
+
+        }
+    },
+
+
+
+}
+
+
 const operatorSchema = {
     operator: {
         type: "object",
@@ -90,7 +145,10 @@ const operatorProfileSchema = {
         type: "object",
         required: [
             "company_name",
-            "motto"
+            "motto",
+            "email",
+            "password",
+            
         ],
         properties: { 
             company_name: {
@@ -102,15 +160,19 @@ const operatorProfileSchema = {
                 example: "turning thoughts into deeds"
             },
             logo_pic: {
-                type: 'image.png'
+                type: 'file',
+                example: "/upload/imgage.png"
 
             },
-           
-       
-            operatorId: {
+            email: {
                 type: "integer",
-                example: "turning thoughts into deeds"
-            } 
+                example: "one@gmail.com"
+            },
+            password: {
+                type: "string",
+                example: "1234"
+            },
+           
         }
     }
 
@@ -198,31 +260,29 @@ const routeSchema = {
 
 }
 
-
-
 const busSchema = {
     bus: {
         type: "object",
         required: [
-            "total_seat",
             "plate_number",
+            "total_seat",
             "operatorId"
         ],
         properties: {
-            id: {
-                type: "integer",
-                example: 1
-
-            }, 
             plate_number: {
                 type: "string",
                 example: "ABC 1234",
-                description: "number plate of vechicle"
+                description: "registration vechicle number"
             }, 
             total_seat: {
                 type: "integer",
-                example: "150",
-                description: "total capacity of passenger the vechicle is able to take"
+                example: "123",
+                description: "total capacity of passengers seats of the vehicle"
+            },
+            fare: {
+                type: "float",
+                example: "200",
+                description:"amount of money per passenger"
             },
             operatorId: {
                 type: "integer",
@@ -235,24 +295,19 @@ const busSchema = {
 
 
 }
+module.exports = {
 
-
-
-
-
-const schemas = {
     ...passengerSchema,
+    ...passengerCreateProfileSchema,
     ...passengerProfileSchema,
     ...operatorSchema,
     ...operatorProfileSchema,
     ...tripSchema,
     ...routeSchema,
-    ...busSchema,
-  
-
-
-}
+    ...busSchema
 
 
 
-module.exports = schemas;
+
+
+};

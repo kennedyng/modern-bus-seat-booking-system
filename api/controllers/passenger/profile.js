@@ -25,7 +25,7 @@ module.exports = {
                 data
             })
         } catch (error) {
-            res.sendStatus(500);
+            res.sendStatus(500).json({error});
         }
     },
 
@@ -33,7 +33,12 @@ module.exports = {
         try {
             updateProfile = await prisma.passengerProfile.update({
                 data: {
-                    ...req.body
+                        first_name: req.body.first_name,
+                        middle_name: req.body.middle_name,
+                        last_name:  req.body.last_name,
+                        nrc: req.body.nrc,
+                        address: req.body.address,
+                        
                 },
                 where: {
                     passengerId: Number(req.userData.passengerId)
@@ -44,6 +49,7 @@ module.exports = {
                 message: "updated successfully"
             })
         } catch (error) {
+            console.log(error)
             res.status(500).json({
                 error
             })
@@ -52,16 +58,17 @@ module.exports = {
 
     deleteProfile: async (req, res) => {
         try {
-            const deleteProfile = await prisma.passengerProfile.delete({
+            const deleteProfile = await prisma.passenger.delete({
                 where: {
-                    passengerId: Number(req.userData.passengerId)
+                    id: Number(req.userData.passengerId)
                 }
             })
-            res.status(201).json({
+            res.status(200).json({
                 deleteProfile,
                 message:"deleted successfully"
             })
         } catch (error) {
+            console.log(error)
             res.status(500).json({
                 error,
             })

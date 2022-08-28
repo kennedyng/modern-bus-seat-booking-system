@@ -10,7 +10,7 @@ module.exports = {
     logIn: async(req, res) => {
         try {
          
-            const operator = await prisma.operator.findFirst({
+            const operator = await prisma.operator.findUnique({
                 where: {
                     email: req.body.email
                 }
@@ -30,16 +30,16 @@ module.exports = {
                            expiresIn: "1h"
                        })
                     
-                       return res.status(201).json({message: "authorization sucessfull", token})
+                       return res.status(200).json({message: "authorization sucessfull", token})
                    }
                 })
             
             }else{
-                res.status(404).json({ message: "email not registered"})
+                
+                res.status(403).json({ message: "email not registered"})
             }
             
         } catch (error) {
-
             res.status(500).json(error)
             
         }

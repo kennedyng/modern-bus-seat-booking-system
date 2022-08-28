@@ -40,9 +40,17 @@ app.use('/receipt', receiptRouter);
 app.use('/bus', busRouter);
 app.use('/accounts', accountsRouter);
 
+
 //documentation route
+var options = {
+  customCss: '.swagger-ui .topbar { display: none }',
+
+};
+
+
+
 app.use("/documentation", swaggerDoc.serve)
-app.use("/documentation", swaggerDoc.setup(swaggerDocumentation))
+app.use("/documentation", swaggerDoc.setup(swaggerDocumentation, options))
 
 
 app.listen( process.env.PORT || port, () => {

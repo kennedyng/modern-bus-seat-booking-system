@@ -2,7 +2,7 @@ const operatorTripsQuery = {
     totalQuery: ( req ) => {
         return {
             where: {
-                operatorId: Number(req.params.operatorId)
+                operatorId: Number(req.userData.operatorId)
             },
             select: {
                 id: true,
@@ -13,7 +13,7 @@ const operatorTripsQuery = {
     dataQuery: ( req ) => {
         return {
             where: {
-                operatorId: Number(req.params.operatorId)
+                operatorId: Number(req.userData.operatorId)
             },
             orderBy: {
                 departing_time: "desc"
@@ -28,20 +28,31 @@ const operatorTripsQuery = {
     intialDataSize: 5,
     model: "trip"
 }
-const tripQuery = {
+const tripsQuery = {
     totalQuery: ( req ) => {
         return {
             where: {
                 Route: {
-                    starting_point: req.params.starting_point
-                }
+                    AND: [
+                        { ending_point: req.params.ending_point },
+                        { starting_point: req.params.starting_point },
+                    ]
+                },
+                operatorId: Number( req.params.operatorId )
             }
         }
     },
     dataQuery: ( req ) => {
         return {
             where: {
-                operatorId: Number(req.params.operatorId),
+                Route: {
+                    
+                    AND: [
+                        { ending_point: req.params.ending_point },
+                        { starting_point: req.params.starting_point },
+                    ],
+                },
+                operatorId: Number( req.params.operatorId )
             },
             orderBy: {
                 departing_time: "desc"
@@ -59,5 +70,5 @@ const tripQuery = {
 
 module.exports = {
     operatorTripsQuery,
-    tripQuery
+    tripsQuery
 }

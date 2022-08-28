@@ -38,7 +38,8 @@ module.exports = {
             }
             
         } catch (error) {
-                res.status(500).json(error)
+            console.log(error)
+                res.status(500).json({error})
             
         }
         
@@ -58,7 +59,7 @@ module.exports = {
             }else{
                 bcrypt.hash(req.body.password, 10, async(err, hash) => {
                     if(err){
-                        return res.status(500);
+                        return res.status(500).json({err});
                     }
                     else{
                         const data = await prisma.passengerProfile.create({

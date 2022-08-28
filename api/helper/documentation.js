@@ -1,73 +1,104 @@
-const passengerAuth = require("./passengerAuth.Doc")
-const operatorAuth = require("./operatorAuth.Doc")
-const buyingTicket = require("./buyingTicket.Doc")
-const tripManagement = require("./tripMagament.Doc");
-const routeMangement = require("./routeManagement.Doc");
-const busManagement = require("./busManagement.Doc");
+const schemas = require("./components/schemas");
+const examples = require("./components/examples");
+const parameters = require("./components/parameters");
+const requestBodies = require("./components/requestBodies");
+const responses = require("./components/responses");
 
-const schamas = require("./schemas.Doc")
+const passengerPaths = require("./paths/passenger.Doc")
+const operatorPaths = require("./paths/operator.Doc")
+const buyingTicketPaths = require("./paths/buyingTicket.Doc")
+const tripPaths = require("./paths/trip.Doc")
+
 const swaggerDocumentation = {
     openapi: "3.0.0",
     info: {
-        title: "Modern E-bus USSD Seat Booking API ",
-        description: "This final year project backend documentation",
-        version: "0.0.1"
+        title: "Modern Bus Seat Booking System",
+        version: "0.0.1",
+        description: ``
     },
     servers: [
         {
-            url: "https://ebus-api.herokuapp.com",
-            description: "production development"
-        },
-        {
-            url: "https://localhost:3000",
+            url: "http://localhost:3000",
             description: "local development"
         },
+        {
+            url: "https://ebus-api.herokuapp.com",
+            description: "production development"
+        }
+       
        
     ],
 
     tags: [
 
         {
-            name:"passenger authorization",
+            name:"authorization",
             description:"",
             
         },
         {
-            name:"operator authorization"
+            name:"passenger",
+            description: ""
+        },
+        {
+            name:"operator"
         },
         {
             name:"buying ticket"
         },
         {
-            name:"trip management"
+            name:"trip"
         },
         {
-            name:"route management"
+            name:"route"
         },
         {
-            name:"bus management"
+            name:"bus"
         },
         
        
     ],
 
-    paths: { 
 
-        ...passengerAuth,
-        ...buyingTicket,
-        ...buyingTicket,
-        ...operatorAuth,
-        ...tripManagement,
-        ...routeMangement,
-        ...busManagement
+    paths: { 
+        ...passengerPaths,
+        ...operatorPaths,
+        ...buyingTicketPaths,
+        ...tripPaths
+
+        
      },
 
 
     components: {
-        schemas: schamas
+
+        securitySchemes: {
+            bearerAuth: {
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT"
+
+            }
+
+        },
+        schemas: schemas,
+
+        parameters: parameters,
+
+        
+
+        requestBodies: requestBodies,
+
+
+        responses: responses,
+
+        examples: examples
+        
     }
 
-     
+
 }
 
-module.exports = swaggerDocumentation
+
+
+module.exports = swaggerDocumentation;
