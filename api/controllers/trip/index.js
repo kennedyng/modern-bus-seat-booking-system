@@ -42,7 +42,8 @@ module.exports = {
                       starting_point: req.params.starting_point,
                       AND: {
                           ending_point: req.params.ending_point
-                      }
+                      },
+                      
                   },
                   operatorId: Number(req.params.operatorId)
                },
@@ -97,7 +98,7 @@ module.exports = {
                     departing_time: req.body.departing_time,
                     busId: parseInt(req.body.busId),
                     routeId: parseInt(req.body.routeId),
-                    operatorId: parseInt(req.body.operatorId)
+                    operatorId: parseInt(req.userData.operatorId)
                 }
             })
             res.status(201).json({createTrip, message: "created successfully"})
@@ -131,7 +132,7 @@ module.exports = {
                     id: Number(req.params.tripId)
                 }
             })
-            res.status(201).json({deleteTrip, message: "deleted successfully"})
+            res.status(200).json({deleteTrip, message: "deleted successfully"})
         } catch (error) {
             res.status(500).json(error);
             

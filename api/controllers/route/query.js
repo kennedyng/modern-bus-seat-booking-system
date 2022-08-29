@@ -77,14 +77,14 @@ const operatorRoutesQuery = {
     totalQuery: ( req ) => {
         return {
             where: {
-                operatorId: Number(req.params.operatorId),
+                operatorId: Number(req.userData.operatorId),
             },
         }
     },
     dataQuery: ( req ) => {
         return {
             where: {
-                operatorId: Number(req.params.operatorId),
+                operatorId: Number(req.userData.operatorId),
             },
         }
     }, 

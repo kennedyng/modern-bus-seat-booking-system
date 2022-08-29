@@ -104,13 +104,39 @@ const tripId = {
 
 
 
-const busId = {
-    in: "query",
-    name: "page",
+const routeId = {
+    in: "path",
+    name: "routeId",
     schema: {
-        type: "integer",
+        type: "integer",  
         
+    },
+    examples: {
+        integer1: {
+            $ref: "#/components/examples/integer1"
+        },
+        integer10: {
+            $ref: "#/components/examples/integer10"
+        }
+    }
+}
+
+
+
+const busId = {
+    in: "path",
+    name: "busId",
+    schema: {
+        type: "integer",  
         
+    },
+    examples: {
+        integer1: {
+            $ref: "#/components/examples/integer1"
+        },
+        integer10: {
+            $ref: "#/components/examples/integer10"
+        }
     }
 }
     
@@ -119,5 +145,7 @@ module.exports = {
     size,
     operatorId,
     receiptId,
-    tripId
+    tripId,
+    routeId,
+    busId
 }

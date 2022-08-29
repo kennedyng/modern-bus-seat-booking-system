@@ -132,7 +132,7 @@ module.exports = {
                     starting_point: req.body.starting_point,
                     ending_point: req.body.ending_point,
                     fare: Number(req.body.fare),
-                    operatorId: Number(req.body.operatorId)
+                    operatorId: Number(req.userData.operatorId)
                 }
             })
             res.status(201).json({createRoute, message: "created successfully"})

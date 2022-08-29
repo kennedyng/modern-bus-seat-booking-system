@@ -8,6 +8,9 @@ const passengerPaths = require("./paths/passenger.Doc")
 const operatorPaths = require("./paths/operator.Doc")
 const buyingTicketPaths = require("./paths/buyingTicket.Doc")
 const tripPaths = require("./paths/trip.Doc")
+const routePaths = require("./paths/route.Doc")
+const busPaths = require("./paths/bus.Doc")
+
 
 const swaggerDocumentation = {
     openapi: "3.0.0",
@@ -64,7 +67,9 @@ const swaggerDocumentation = {
         ...passengerPaths,
         ...operatorPaths,
         ...buyingTicketPaths,
-        ...tripPaths
+        ...tripPaths,
+        ...routePaths,
+        ...busPaths
 
         
      },

@@ -184,23 +184,14 @@ const tripSchema = {
         type: "object",
         required: [
             "routeId",
-            "operatorId",
             "departing_time",
             "busId"
         ],
         properties: {
-            id: {
-                type: "integer",
-                example: 1
-
-            }, 
+          
             departing_time: {
                 type: "date time",
                 example: new Date()
-            },
-            operatorId: {
-                type: "integer",
-                example: "1"
             },
             routeId: {
                 type: "integer",
@@ -225,14 +216,9 @@ const routeSchema = {
             "starting_point",
             "ending_point",
             "fare",
-            "operatorId"
         ],
         properties: {
-            id: {
-                type: "integer",
-                example: 1
-
-            }, 
+            
             starting_point: {
                 type: "string",
                 example: "lusaka",
@@ -248,11 +234,6 @@ const routeSchema = {
                 example: "200",
                 description:"amount of money per passenger"
             },
-            operatorId: {
-                type: "integer",
-                example: "1",
-        
-            },
              
         }
     }
@@ -266,7 +247,7 @@ const busSchema = {
         required: [
             "plate_number",
             "total_seat",
-            "operatorId"
+           
         ],
         properties: {
             plate_number: {
@@ -284,11 +265,7 @@ const busSchema = {
                 example: "200",
                 description:"amount of money per passenger"
             },
-            operatorId: {
-                type: "integer",
-                example: "1",
-        
-            },
+         
              
         }
     }
