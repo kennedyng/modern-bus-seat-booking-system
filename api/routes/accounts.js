@@ -3,6 +3,6 @@ const accountsController = require("../controllers/accounts")
 const router = express();
 const checkAuth = require("../middlewares/auth-check");
 
-router.get('/view/balance',checkAuth, accountsController.getOperatorBalance);
+router.get('/view',checkAuth, accountsController.getOperatorAccountsData);
 
 module.exports = router;

@@ -3,10 +3,9 @@
 const passengerLogin = {
     tags: ["authorization", "passenger"],
     description: "",
-    summary: "",
+    summary: "Generate a passenger`s Token",
 
     requestBody: {
-        description:"",
         required: true,
         content: {
             "application/json": {
@@ -40,7 +39,6 @@ const passengerLogin = {
 
 const passengerRegister = {
     tags: ["passenger"],
-    description: "provide approriate details to register a new passenger",
     summary: "Register a new passenger",
 
     requestBody: {
@@ -85,7 +83,6 @@ const passengerProfileView = {
         { bearerAuth: [] } 
     ],
     tags: ["passenger"],
-    description: "To view a passenger profile a varied passenger's Bearer Token is needed.",
     summary: "passenger's profile",
 
 
@@ -109,11 +106,9 @@ const passengerProfileUpdate = {
         { bearerAuth: [] } 
     ],
     tags: ["passenger"],
-    description: "To update a passenger profile a varied passenger's Bearer Token is needed.",
     summary: "update passengers profile",
 
     requestBody: {
-        description:"",
         required: true,
         content: {
             "application/json": {
@@ -150,11 +145,7 @@ const passengerProfileDelete = {
         { bearerAuth: [] } 
     ],
     tags: ["passenger"],
-    description: "To update a passenger profile a varied passenger's Bearer Token is needed.",
-    summary: "update passengers profile",
-
-   
-
+    summary: "Delete passengers profile",
 
     responses: {
         500: {

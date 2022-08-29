@@ -19,23 +19,17 @@ const fileFilter = ( req, file, cb ) => {
     }
 
 }
-
-
-
 const router = express();
 const upload = multer(
     {
         storage:storage,
         fileFilter: fileFilter,
         limits: {
-            fileSize: 1024 * 1024 * 1
+            fileSize: 1024 * 1024 * 1 //1 MB
         }
     }
 )
 router.post('/login', operatorController.logIn)
 router.post('/register', upload.single('logo_pic'), operatorController.register )
-
-
-
 
 module.exports = router;

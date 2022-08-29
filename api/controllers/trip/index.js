@@ -1,69 +1,7 @@
-const express = require("express");
 const { PrismaClient } = require('@prisma/client');
-const pagination = require("../../middlewares/pagination");
-
-
-const router = express();
-
 const prisma = new PrismaClient();
 
 module.exports = {
-
-
-    getTrip:  async(req, res) => {
-        try {   
-        const totalItems = await prisma.trip.findMany({
-            where: {
-                Route: {
-                    starting_point: req.params.starting_point,
-                    AND: {
-                        ending_point: req.params.ending_point
-                    }
-            },
-            operatorId: Number(req.params.operatorId)
-            },
-            include: {
-                Route: true,
-                Bus: true
-            },
-            orderBy: {
-                departing_time: "desc"
-            }
-        })
-    
-        const {totalPages, skip, limit } =  pagination.getPaginationVar({
-            page: req.query.page,
-            size: req.query.size,
-            totalCount: totalItems.length
-        })
-           const data = await prisma.trip.findMany({
-               where: {
-                  Route: {
-                      starting_point: req.params.starting_point,
-                      AND: {
-                          ending_point: req.params.ending_point
-                      },
-                      
-                  },
-                  operatorId: Number(req.params.operatorId)
-               },
-               include: {
-                   Route: true,
-                   Bus: true
-               },
-               orderBy: {
-                   departing_time: "desc"
-               },
-               skip: skip,
-               take: limit
-           })
-            res.status(201).json({data, totalPages}) 
-        } catch (error) {
-            res.status(500).json(error)
-            
-        }
-        
-    },
 
 
     getOneTrip:  async(req, res) => {
@@ -91,6 +29,12 @@ module.exports = {
          
      }
     },
+
+
+
+
+
+
     createTrip: async(req, res) => {
         try {
             const createTrip = await prisma.trip.create({
@@ -106,6 +50,10 @@ module.exports = {
             res.status(500).json(error)  
         }
     },
+
+
+
+
 
     updateTrip: async(req, res) => {
         try {
@@ -125,6 +73,11 @@ module.exports = {
             
         }
     },
+
+
+
+
+    
     deleteTrip: async(req, res) => {
         try {
             const deleteTrip = await prisma.trip.delete({

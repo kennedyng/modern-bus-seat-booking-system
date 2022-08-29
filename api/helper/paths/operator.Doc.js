@@ -2,11 +2,9 @@
 
 const operatorLogin = {
     tags: ["authorization", "operator"],
-    description: "",
-    summary: "",
+    summary: "generate operator`s token",
 
     requestBody: {
-        description:"",
         required: true,
         content: {
             "application/json": {
@@ -41,8 +39,7 @@ const operatorLogin = {
 
 const operatorRegister = {
     tags: ["operator"],
-    description: "provide approriate details to register a new operator",
-    summary: "Register a new operator",
+    summary: "Create a new operator`s account profile",
 
     requestBody: {
         description:"",
@@ -90,7 +87,6 @@ const operatorViewProfile = {
         { bearerAuth: [] } 
     ],
     tags: ["operator"],
-    description: "To view a operator profile a varied operator's Bearer Token is needed.",
     summary: "operator's profile",
 
 
@@ -109,12 +105,36 @@ const operatorViewProfile = {
 }
 
 
+const operatorViewAccounts = {
+    security: [
+        { bearerAuth: [] } 
+    ],
+    tags: ["operator"],
+    summary: "operator's accounts",
+    description: "view operator accounts details",
+
+
+    responses: {
+        500: {
+            $ref: "#/components/responses/ServerError"
+        },
+        
+        200: {
+            $ref: "#/components/responses/Ok"
+        },
+         
+    }
+    
+
+}
+
+
+
 const operatorUpdateProfile = {
     security: [
         { bearerAuth: [] } 
     ],
     tags: ["operator"],
-    description: "To update a operator profile a varied operator's Bearer Token is needed.",
     summary: "update passengers profile",
 
     requestBody: {
@@ -152,38 +172,6 @@ const operatorUpdateProfile = {
 }
 
 
-const passengerProfileDelete = {
-    security: [
-        { bearerAuth: [] } 
-    ],
-    tags: ["operator"],
-    description: "To update a operator profile a varied operator's Bearer Token is needed.",
-    summary: "update passengers profile",
-
-   
-
-
-    responses: {
-        500: {
-            $ref: "#/components/responses/ServerError"
-        },
-        
-        200: {
-            $ref: "#/components/responses/Ok"
-        },
-        403: {
-            $ref: "#/components/responses/AuthFailed"
-        },
-        
-    }
-    
-
-}
-
-
-
-
-
 const passengerPaths = {
 
    
@@ -206,9 +194,12 @@ const passengerPaths = {
     },
 
 
-    "/operator/profile/delete": {
-        delete: passengerProfileDelete
-    }
+    "/accounts/view": {
+        get: operatorViewAccounts
+    },
+
+
+   
 }
 
 

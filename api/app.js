@@ -43,7 +43,7 @@ app.use('/accounts', accountsRouter);
 
 //documentation route
 var options = {
-  customCss: '.swagger-ui .topbar { display: none }',
+  customCss: `.topbar-wrapper img { opacity: 0}}`,
 
 };
 
