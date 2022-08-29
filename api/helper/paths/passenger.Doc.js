@@ -49,7 +49,7 @@ const passengerRegister = {
         content: {
             "application/json": {
                 schema: {
-                    $ref: "#/components/schemas/passengerCreateProfile",
+                    $ref: "#/components/schemas/passengerProfile",
                 }
             }
         }

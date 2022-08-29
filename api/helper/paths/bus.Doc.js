@@ -215,18 +215,108 @@ const busDetails = {
 
 
 const createBus = {
+    security: [
+        { bearerAuth: [] } 
+    ],
+    tags: ["bus"],
+    description: "create bus",
+    summary: "create bus",
+    requestBody: {
+        required: true,
+        description: "",
+        content: {
+            "application/json": {
+                schema: {
+                    $ref: "#/components/schemas/bus"
+                }
+            }
+        }
+        
+    },
+
+    responses: {
+        500: {
+            $ref: "#/components/responses/ServerError"
+        },
+        
+        201: {
+            $ref: "#/components/responses/Created"
+        },
+        403: {
+            $ref: "#/components/responses/AuthFailed"
+        },
+        
+    }
 
 }
 
 
 const updateBus = {
+    security: [
+        { bearerAuth: [] } 
+    ],
+    tags: ["bus"],
+    description: "update route",
+    summary: "update route",
+    parameters: [
+        { $ref: "#components/parameters/busId" }
+    ],
+    requestBody: {
+        required: true,
+        description: "",
+        content: {
+            "application/json": {
+                schema: {
+                    $ref: "#/components/schemas/bus"
+                }
+            }
+        }
+        
+    },
+
+    responses: {
+        500: {
+            $ref: "#/components/responses/ServerError"
+        },
+        
+        201: {
+            $ref: "#/components/responses/Created"
+        },
+        403: {
+            $ref: "#/components/responses/AuthFailed"
+        },
+        
+    }
+
 
 }
 
 
 const deleteBus = {
 
-
+    security: [
+        { bearerAuth: [] } 
+    ],
+    tags: ["bus"],
+    description: "delete bus by id",
+    summary: "delete trip by id",
+    parameters: [
+        { $ref: "#components/parameters/busId" }
+    ],
+    
+    responses: {
+        500: {
+            $ref: "#/components/responses/ServerError"
+        },
+        
+        200: {
+            $ref: "#/components/responses/Ok"
+        },
+        403: {
+            $ref: "#/components/responses/AuthFailed"
+        },
+        
+    }
 }
 
 
@@ -242,7 +332,7 @@ const busPaths = {
     },
 
     "/bus/view/one/{busId}": {
-        post: busDetails
+        get: busDetails
     },
 
 
@@ -256,7 +346,7 @@ const busPaths = {
     },
 
 
-    "/view/delete/{busId}": {
+    "/bus/delete/{busId}": {
         delete: deleteBus
     },
 

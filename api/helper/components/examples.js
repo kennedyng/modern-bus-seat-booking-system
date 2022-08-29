@@ -8,11 +8,6 @@ const integer10 = {
     value: 10
 }
 
-const loginExample = {
-    value: {
-        name:"llll"
-    }
-}
 
 
 
@@ -82,9 +77,10 @@ const emptyObject = {
 
 
 module.exports = {
-    loginExample,
     passengerLogin,
     passengerRegister,
+
+    operatorLogin,
 
 
     //servers error

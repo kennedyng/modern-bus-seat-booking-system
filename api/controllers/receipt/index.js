@@ -48,6 +48,7 @@ module.exports = {
     
             res.status(201).json({ data, message: "created successfully"});
         } catch (error) {
+            console.log(error)
             res.status(500).json(error)
             
         }

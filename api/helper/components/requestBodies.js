@@ -8,8 +8,11 @@ const loginBody = {
             },
 
             examples: {
-                loginExample: {
-                    $ref:"#/components/examples/loginExample"
+                passengerLogin: {
+                    $ref:"#/components/examples/passengerLogin"
+                },
+                operatorLogin: {
+                    $ref:"#/components/examples/operatorLogin"
                 }
             }
             

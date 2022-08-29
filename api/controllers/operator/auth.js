@@ -5,6 +5,11 @@ const jwt = require("jsonwebtoken");
 const prisma = new PrismaClient();
 
 
+
+const app = require("express")();
+
+
+
 module.exports = {
 
     logIn: async(req, res) => {
@@ -49,7 +54,10 @@ module.exports = {
 
     // Registering a new operator account
     register: async(req, res) => {
+       
+      
         try {
+            const logoPicUrl = req.file != undefined ? req.file.path: '';
             const userExist = await prisma.operator.count({
                 where: {
                     email: req.body.email
@@ -69,7 +77,7 @@ module.exports = {
                             data: {
                                 company_name: req.body.company_name,
                                 motto: req.body.motto,
-                                logo_pic: req.file.path ? req.file.path: null,
+                                logo_pic: logoPicUrl,
                                 operator: {
                                     create: {
                                         password: hash,

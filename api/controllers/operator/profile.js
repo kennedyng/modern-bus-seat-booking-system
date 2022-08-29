@@ -1,5 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-const pagination = require("../../middlewares/pagination");
 
 const prisma = new PrismaClient();
 
@@ -43,11 +42,25 @@ module.exports= {
     },
 
     updateOperatorProfile: async (req, res) => {
+
         try {
+            let operatorData = {}
+            if(req.file){
+                 operatorData = {
+                    company_name: req.body.company_name,
+                    motto: req.body.motto,
+                    logo_pic: req.file.path
+                }
+            }
+            else{
+                 operatorData = {
+                    company_name: req.body.company_name,
+                    motto: req.body.motto,
+               }
+
+            }
             updateProfile = await prisma.operatorProfile.update({
-                data: {
-                    ...req.body
-                },
+                data: operatorData,
                 where: {
                     operatorId: Number(req.userData.operatorId)
                 }
@@ -55,9 +68,9 @@ module.exports= {
             res.status(201).json({
                 updateProfile,
                 message: "updated successfully",
-                userData: req.userData
             })
         } catch (error) {
+            console.log(error)
             res.status(500).json({
                 error
             })

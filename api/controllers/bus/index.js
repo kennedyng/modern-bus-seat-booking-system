@@ -51,7 +51,7 @@ module.exports = {
                 data: {
                     plate_number: req.body.plate_number,
                     total_seat: parseInt(req.body.total_seat),
-                    operatorId: Number(req.body.operatorId)
+                    operatorId: Number(req.userData.operatorId)
                     
                 }
             })
@@ -69,7 +69,7 @@ module.exports = {
                 data: {
                     plate_number: req.body.plate_number,
                     total_seat: parseInt(req.body.total_seat),
-                    operatorId: Number(req.body.operatorId)
+                    operatorId: Number(req.userData.operatorId)
                 },
                 where: {
                     id: Number(req.params.busId)
@@ -90,7 +90,7 @@ module.exports = {
                     id: Number(req.params.busId)
                 }
             })
-            res.status(201).json({data, message:"successfully deleted"});
+            res.status(200).json({data, message:"successfully deleted"});
         } catch (error) {
             res.status(500).json(error);
         }

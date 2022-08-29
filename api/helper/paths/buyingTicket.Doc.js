@@ -1,3 +1,4 @@
+
 const operatorsProfileList = {
     tags: ["buying ticket"],
     description: "",
@@ -226,6 +227,45 @@ const availableTrips = {
 
 }
 
+
+
+const buyAReceipt = {
+    security: [
+        { bearerAuth: [] } 
+    ],
+    tags: ["buying ticket"],
+    description: "create a receipt. this operation will be integrated with MTN Mobile money system.",
+    summary: "buy a ticket",
+    requestBody: {
+        required: true,
+        description: "",
+        content: {
+            "application/json": {
+                schema: {
+                    $ref: "#/components/schemas/receipt"
+                }
+            }
+        }
+        
+    },
+
+    responses: {
+        500: {
+            $ref: "#/components/responses/ServerError"
+        },
+        
+        201: {
+            $ref: "#/components/responses/Created"
+        },
+        403: {
+            $ref: "#/components/responses/AuthFailed"
+        },
+        
+    }
+
+
+}
+
 const buyingTicketPaths = {
 
    
@@ -264,6 +304,11 @@ const buyingTicketPaths = {
     "/trip/view/one/{tripId}": {
         get:  tripDetails
     },
+
+
+    "/receipt/create": {
+        post: buyAReceipt
+    }
 
 }
 

@@ -13,7 +13,8 @@ const operatorLogin = {
                 schema: {
                     $ref: "#/components/schemas/operator"
                 }
-            }
+            },
+           
         }
         
     },
@@ -47,12 +48,16 @@ const operatorRegister = {
         description:"",
         required: true,
         content: {
-            "application/json": {
+            "multipart/form-data": {
                 schema: {
+                    type: "string",
+                    format: "binary",
                     $ref: "#/components/schemas/operatorProfile",
                 }
             }
-        }
+        },
+
+        
         
     },
 
@@ -104,7 +109,7 @@ const operatorViewProfile = {
 }
 
 
-const passengerProfileUpdate = {
+const operatorUpdateProfile = {
     security: [
         { bearerAuth: [] } 
     ],
@@ -116,9 +121,11 @@ const passengerProfileUpdate = {
         description:"",
         required: true,
         content: {
-            "application/json": {
+            "multipart/form-data": {
                 schema: {
-                    $ref: "#/components/schemas/passengerProfile",
+                    type: "string",
+                    format: "binary",
+                    $ref: "#/components/schemas/operatorProfile",
                 }
             }
         }
@@ -195,7 +202,7 @@ const passengerPaths = {
 
 
     "/operator/profile/update": {
-        patch: passengerProfileUpdate
+        patch: operatorUpdateProfile
     },
 
 
