@@ -28,10 +28,10 @@ const swaggerDocumentation = {
         `
     },
     servers: [
-        {
-            url: "http://localhost:3000",
-            description: "local development"
-        },
+        // {
+        //     url: "http://localhost:3000",
+        //     description: "local development"
+        // },
         {
             url: "https://ebus-api.herokuapp.com",
             description: "production development"
