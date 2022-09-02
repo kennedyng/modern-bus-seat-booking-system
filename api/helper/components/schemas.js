@@ -55,10 +55,6 @@ const passengerProfileSchema = {
                 type: "string",
                 example: "50/23 new kamwala ma plot"
             }, 
-            passengerId: {
-                type: "integer",
-                example: "1"
-            },
             phone_number: {
                 type: "string",
                 example: "0978329482"
