@@ -15,9 +15,9 @@ const busPaths = require("./paths/bus.Doc")
 const swaggerDocumentation = {
     openapi: "3.0.0",
     info: {
-        title: "Modern E-Bus USSD System API",
+        title: "MODERN E BUS RESERVATION API",
         version: "0.0.1",
-        description: `The purpose of this web page is to document and detail the backend web APis for the final year project titled **Modern E-Bus USSD System API**.
+        description: `The purpose of this web page is to document and detail the backend web APis for the final year project titled **Modern E-Bus USSD Reservation System**.
                       The main objective of the system is to automate the manual way of buying and selling of public bus ticket between the bus operator and passengers.
                       The system supports two types of users namely **passengers** and **operators**. **Passenger** is any user wants to use the system to buy a bus seat ticket.
                       **Operator** is a public bus company that renders travelling services to the passengers. **Passengers** can register for an account with the system and start
