@@ -54,8 +54,6 @@ module.exports = {
 
     // Registering a new operator account
     register: async(req, res) => {
-       
-      
         try {
             const logoPicUrl = req.file != undefined ? req.file.path: '';
             const userExist = await prisma.operator.count({
