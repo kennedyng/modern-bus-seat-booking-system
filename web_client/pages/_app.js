@@ -6,8 +6,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-calendar/dist/Calendar.css';
 import useSWR, { SWRConfig } from 'swr'
+import { SessionProvider } from "next-auth/react"
 import axios from "axios";
-function MyApp({ Component, pageProps }) {
+function MyApp({ 
+  Component, 
+  pageProps: { session, ...pageProps } 
+}) {
+
+
   useEffect(()=>{
     import("bootstrap/dist/js/bootstrap");
   },[])
@@ -20,10 +26,12 @@ function MyApp({ Component, pageProps }) {
     <SWRConfig value={{
         fetcher: (url) => axios.get(url).then(res => res.data)
         }}>
-      <RootLayout>
-        <ToastContainer icon={false}/>
-        <Component {...pageProps} />
-      </RootLayout>
+        <SessionProvider session={session}>
+          <RootLayout>
+            <ToastContainer icon={false}/>
+            <Component {...pageProps} />
+          </RootLayout>
+      </SessionProvider>
     </SWRConfig>
   )
 }

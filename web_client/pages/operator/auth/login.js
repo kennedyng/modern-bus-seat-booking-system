@@ -3,9 +3,36 @@ import destination from "../../../public/svg/destination.svg"
 import Image from 'next/image'
 import Form from 'react-bootstrap/Form';
 import Link from "next/link"
+import { signIn, signOut, useSession } from "next-auth/react"
+import useInput from '../../../hooks/useInput';
+import { toast }  from "react-toastify"
 function Login() {
   const [validated, setValidated] = useState(false);
+  const [email, bindEmail ] = useInput()
+  const [password, bindPassword ] = useInput()
 
+  const handleLogin = async () => {
+    const res = await signIn("credentials", {
+        email: email.toLocaleLowerCase(),
+        password: password,
+        redirect:false
+    })
+    .then( response => {
+        if( response.status == 200 ){
+            toast.success("Welcome to the Platform. Enjoy you vist")
+        }else{
+            toast.error("Authentication failed. " + response.error)
+        }
+        
+    })
+    .catch(error => {
+        toast.error("failed to login")
+    })
+
+    console.log("login", res)
+
+
+  }
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
@@ -32,7 +59,7 @@ function Login() {
                     <div  className='border-primary'>
                     <div className="input-group mb-2">
                         <span className="input-group-text bg-dark text-white" id="inputGroup-sizing-default">Email</span>
-                        <input  type="text" className="form-control" required />
+                        <input {...bindEmail}  type="email" className="form-control" required />
                             <div className="valid-feedback">
                                 Looks good!
                             </div>
@@ -42,7 +69,7 @@ function Login() {
                     </div>
                     <div className="input-group mb-2">
                         <span className="input-group-text bg-dark text-white" id="inputGroup-sizing-default">Password</span>
-                        <input  type="text" className="form-control" required />
+                        <input {...bindPassword}  type="text" className="form-control" required />
                             <div className="valid-feedback">
                                 Looks good!
                             </div>
@@ -55,7 +82,7 @@ function Login() {
                     </div>
                     
                     <div className="d-flex justify-content-center">
-                        <button className="text-center btn btn-primary rounded-0 fw-bold w-25 " type="submit">Login</button>
+                        <button onClick={handleLogin} className="text-center btn btn-primary rounded-0 fw-bold w-25 " type="submit">Login</button>
                     </div> 
                     <div className="text-center">
                         <Link href="/operator/auth/register">

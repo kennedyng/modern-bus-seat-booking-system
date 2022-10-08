@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useSyncExternalStore } from 'react'
 import Link from "next/link"
+import { useSession, signIn, signOut } from "next-auth/react"
 function NavBar() {
+    const { data: session } = useSession()
+    console.log(useSession())
+ 
+
   return (
         <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid fw-light">
             <Link href="/">
                 <a className="navbar-brand" >CloudE-BUSPLATFORM</a>
             </Link>
-            
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>

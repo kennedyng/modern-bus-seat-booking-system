@@ -15,9 +15,10 @@ module.exports = {
     logIn: async(req, res) => {
         try {
          
-            const operator = await prisma.operator.findUnique({
+            const operator = await prisma.operator.findFirst({
                 where: {
-                    email: req.body.email
+                    email: req.body.email,
+                    password: req.body.password
                 }
             })
             if(operator){
