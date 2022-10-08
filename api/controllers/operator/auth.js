@@ -17,8 +17,16 @@ module.exports = {
          
             const operator = await prisma.operator.findFirst({
                 where: {
-                    email: req.body.email,
-                    password: req.body.password
+                    AND:[
+                        {
+                            email: req.body.email
+                        },
+                        {
+                            password: req.body.password
+                        }
+                    ]
+                    
+                    
                 }
             })
             if(operator){
