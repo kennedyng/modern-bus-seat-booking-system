@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import RootLayout from '../components/layout/RootLayout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-calendar/dist/Calendar.css';
 import useSWR, { SWRConfig } from 'swr'
 import axios from "axios";
 function MyApp({ Component, pageProps }) {
@@ -20,7 +21,7 @@ function MyApp({ Component, pageProps }) {
         fetcher: (url) => axios.get(url).then(res => res.data)
         }}>
       <RootLayout>
-        <ToastContainer />
+        <ToastContainer icon={false}/>
         <Component {...pageProps} />
       </RootLayout>
     </SWRConfig>

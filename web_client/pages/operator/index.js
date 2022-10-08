@@ -31,16 +31,20 @@ function OperatorManagement() {
         <div className='row g-4'>
             <div className='col-md-6'>
                 <Link href="operator/trip">
-                <a className='nav-link'><SimpleCard data={manageTripData} /></a>
+                <a className='nav-link'>
+                    <SimpleCard data={manageTripData} />
+                </a>
                 </Link>
             </div>
             <div className='col-md-6'>
                 <Link href="operator/route">
-                <a className='nav-link'><SimpleCard data={manageRoutesData} /></a>
+                <a className='nav-link'>
+                    <SimpleCard data={manageRoutesData} />
+                </a>
                 </Link>
             </div>
             <div className='col-md-6'>
-                <Link href="operator/route">
+                <Link href="operator/bus">
                 <a className='nav-link'><SimpleCard data={manageBusesData} /></a>
                 </Link>
             </div>
