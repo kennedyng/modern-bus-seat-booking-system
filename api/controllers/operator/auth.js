@@ -15,45 +15,37 @@ module.exports = {
     logIn: async(req, res) => {
         try {
          
-            const operator = await prisma.operator.findFirst({
+            const operator = await prisma.operator.findUnique({
                 where: {
-                    AND:[
-                        {
-                            email: req.body.email
-                        },
-                        {
-                            password: req.body.password
-                        }
-                    ]
-                    
-                    
+                    email: req.body.email
                 }
             })
+
+            console.log(operator)
             if(operator){
-                bcrypt.compare( req.body.password, operator.password, (err, result)=> {
-                   if(err){
-                       return res.status(500).json({ message: "authorization failed"})
-                   }else{
-                       const token = jwt.sign({
-                           operatorId: operator.id,
-                           email: operator.email
-                       }, 
-                       process.env.JWT_KEY,
-                       
-                       {
-                           expiresIn: "1h"
-                       })
-                    
-                       return res.status(200).json({message: "authorization sucessfull", token})
-                   }
-                })
-            
+                    const match = await bcrypt.compare( req.body.password, operator.password )
+                    if(match){
+                        const token = jwt.sign({
+                            operatorId: operator.id,
+                            email: operator.email
+                        }, 
+                        process.env.JWT_KEY,
+                        
+                        {
+                            expiresIn: "1h"
+                        })
+                     
+                        return res.status(200).json({message: "authorization successfull", token})
+                    }else{
+                        return res.status(500).json({message: "auth failed"})
+                    }
             }else{
                 
-                res.status(403).json({ message: "email not registered"})
+                res.status(500).json({ message: "auth failed"})
             }
             
         } catch (error) {
+            console.log(error)
             res.status(500).json(error)
             
         }

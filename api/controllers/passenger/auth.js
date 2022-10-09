@@ -15,31 +15,27 @@ module.exports = {
                 }
             })
             if(passenger){
-                bcrypt.compare( req.body.password, passenger.password, (err, result)=> {
-                   if(err){
-                       return res.status(500).json({ message: "authorization failed"})
-                   }else{
-                       const token = jwt.sign({
-                           passengerId: passenger.id,
-                           phone_number: passenger.phone_number
-                       }, 
-                       process.env.JWT_KEY,
-                       
-                       {
-                           expiresIn: "1h"
-                       })
-                    
-                       return res.status(200).json({message: "authorization sucessfull", token})
-                   }
-                })
-            
+                const match = await bcrypt.compare( req.body.password, passenger.password)
+                    if(match){
+                        const token = jwt.sign({
+                            passengerId: passenger.id,
+                            phone_number: passenger.phone_number
+                        }, 
+                        process.env.JWT_KEY,
+                        
+                        {
+                            expiresIn: "1h"
+                        })
+                     
+                        return res.status(200).json({message: "authorization sucessfull", token})
+                    }else{
+                        return res.status(500).json({message: "auth failed"})
+                    }            
             }else{
-                res.status(403).json({ message: "authorization failed"})
+                res.status(500).json({ message: "auth failed"})
             }
-            
         } catch (error) {
                 res.status(500).json({error})
-            
         }
         
     },
