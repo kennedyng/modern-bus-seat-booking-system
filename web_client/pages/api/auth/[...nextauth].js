@@ -42,6 +42,12 @@ export const authOptions = {
       return session
     }
   },
+  secret: "project",
+  jwt: {
+    secret: "project",
+    encryption: true
+  },
+
 
 
   pages: {
