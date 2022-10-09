@@ -6,26 +6,38 @@ import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/react"
 import useInput from '../../../hooks/useInput';
 import { toast }  from "react-toastify"
+import SubmitButton from '../../../components/parts/SubmitButton';
+import Router from 'next/router';
+
 function Login() {
   const [validated, setValidated] = useState(false);
   const [email, bindEmail ] = useInput()
   const [password, bindPassword ] = useInput()
+  const [isLoading, setIsLoading ] = useState(false)
 
+ 
+  
   const handleLogin = async () => {
+    setIsLoading(true)
     const res = await signIn("credentials", {
         email: email.toLocaleLowerCase(),
         password: password,
         redirect:false
     })
     .then( response => {
+        setIsLoading(false)
         if( response.status == 200 ){
-            toast.success("Welcome to the Platform. Enjoy you vist")
+
+            toast.success( email + ". Welcome to the Platform. Enjoy you vist")
+            Router.push("/operator")
+            
         }else{
             toast.error("Authentication failed. " + response.error)
         }
         
     })
     .catch(error => {
+        setIsLoading(false)
         toast.error("failed to login")
     })
 
@@ -39,6 +51,9 @@ function Login() {
 
     if (form.checkValidity() === false) {
       event.stopPropagation();
+    }else{
+        //login 
+        handleLogin()
     }
     setValidated(true);
   };
@@ -69,7 +84,7 @@ function Login() {
                     </div>
                     <div className="input-group mb-2">
                         <span className="input-group-text bg-dark text-white" id="inputGroup-sizing-default">Password</span>
-                        <input {...bindPassword}  type="text" className="form-control" required />
+                        <input {...bindPassword}  type="password" className="form-control" required />
                             <div className="valid-feedback">
                                 Looks good!
                             </div>
@@ -82,7 +97,7 @@ function Login() {
                     </div>
                     
                     <div className="d-flex justify-content-center">
-                        <button onClick={handleLogin} className="text-center btn btn-primary rounded-0 fw-bold w-25 " type="submit">Login</button>
+                        <SubmitButton  isLoading={isLoading}>Login</SubmitButton>
                     </div> 
                     <div className="text-center">
                         <Link href="/operator/auth/register">

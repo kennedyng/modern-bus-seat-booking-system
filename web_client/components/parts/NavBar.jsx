@@ -2,8 +2,8 @@ import React, { useSyncExternalStore } from 'react'
 import Link from "next/link"
 import { useSession, signIn, signOut } from "next-auth/react"
 function NavBar() {
-    const { data: session } = useSession()
-    console.log(useSession())
+   const {data: session } = useSession();
+ console.log(session)
  
 
   return (
@@ -26,26 +26,51 @@ function NavBar() {
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Operator
                     </a>
-                    <ul className="dropdown-menu border-primary rounded-0">
-                        <Link href="/operator/auth/login">
-                            <a className="dropdown-item" >Login</a>
-                        </Link>
-                        <Link href="/operator">
-                            <a className="dropdown-item" >Trip Management</a>
-                        </Link>
-                    </ul>
+                        <ul className="dropdown-menu  rounded-0 text-center ">
+                            {
+                                !session && (
+                                <>
+                                    <Link href="/operator/auth/login">
+                                        <a className="dropdown-item text-muted" >Login</a>
+                                    </Link>
+                                    <Link href="/operator/auth/register">
+                                        <a className="dropdown-item text-muted" >Register</a>
+                                    </Link>
+                                </>
+                                )
+                            }
+                            {
+                                session && (
+                                <>
+                                    <Link href="/operator">
+                                        <a className="dropdown-item text-muted" >Management</a>
+                                    </Link>
+                                    <Link href="/operator/trip">
+                                        <a className="dropdown-item text-muted" >Trip Management</a>
+                                    </Link>
+                                    <Link href="/operator/route">
+                                        <a className="dropdown-item text-muted" >Route Management</a>
+                                    </Link>
+                                    <Link href="/operator/bus">
+                                        <a className="dropdown-item text-muted" >Bus Management</a>
+                                    </Link>
+                                    <a  onClick={() => signOut()} className="dropdown-item btn btn-link text-danger" >signout</a>
+                                </>
+                                )
+                            }
+                        </ul>
                 </li>
 
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Passenger
                     </a>
-                    <ul className="dropdown-menu border-primary rounded-0">
+                    <ul className="dropdown-menu text-center rounded-0">
                         <Link href="/passenger/register">
-                            <a className="dropdown-item" >Register</a>
+                            <a className="dropdown-item text-muted" >Register</a>
                         </Link>
                         <Link href="/passenger/profileManagement">
-                            <a className="dropdown-item" >profile Management</a>
+                            <a className="dropdown-item text-muted" >profile Management</a>
                         </Link>
                         
                     </ul>
