@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 function RouteCard({ data }) {
-  console.log("card", data);
   return (
     <div className="card rounded-0 ">
       <div className="card-body">

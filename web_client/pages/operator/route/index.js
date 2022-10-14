@@ -9,15 +9,12 @@ import { Pagination } from "@mui/material";
 import Link from "next/link";
 
 function Route({ initialData }) {
-  console.log("data", initialData);
-
   const [page, setPage] = React.useState(1);
   const handleChange = async (event, value) => {
     setPage(value);
   };
 
   const token = useToken();
-  console.log(token);
 
   const { data, error } = useSWR(
     [
