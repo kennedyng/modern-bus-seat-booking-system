@@ -8,6 +8,10 @@ import 'react-calendar/dist/Calendar.css';
 import useSWR, { SWRConfig } from 'swr'
 import { SessionProvider } from "next-auth/react"
 import axios from "axios";
+
+
+
+const fetcher = (url, token) => axios.get(url, { headers: { Authorization: "Bearer " + token } }).then((res) => res.data)
 function MyApp({ 
   Component, 
   pageProps: { session, ...pageProps } 
@@ -23,9 +27,7 @@ function MyApp({
 
 
   return (
-    <SWRConfig value={{
-        fetcher: (url) => axios.get(url).then(res => res.data)
-        }}>
+    <SWRConfig value={{ fetcher }}>
         <SessionProvider session={session}>
           <RootLayout>
             <ToastContainer icon={false}/>

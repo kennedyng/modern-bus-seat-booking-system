@@ -2306,6 +2306,16 @@
   "resolved" "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   "version" "3.0.4"
 
+"react-loading@^2.0.3":
+  "integrity" "sha512-Vdqy79zq+bpeWJqC+xjltUjuGApyoItPgL0vgVfcJHhqwU7bAMKzysfGW/ADu6i0z0JiOCRJjo+IkFNkRNbA3A=="
+  "resolved" "https://registry.npmjs.org/react-loading/-/react-loading-2.0.3.tgz"
+  "version" "2.0.3"
+
+"react-simple-timestamp-to-date@^1.0.3":
+  "integrity" "sha512-Vx9Anf0UWR7jm+FrRbxvq/11vEYWsIjsBWdBjaIYJDiewBQLWwC0LI6+4E6t05/k4iigut4bPcZ5+Hzj9LrwAQ=="
+  "resolved" "https://registry.npmjs.org/react-simple-timestamp-to-date/-/react-simple-timestamp-to-date-1.0.3.tgz"
+  "version" "1.0.3"
+
 "react-toastify@^9.0.8":
   "integrity" "sha512-EwM+teWt49HSHx+67qI08yLAW1zAsBxCXLCsUfxHYv1W7/R3ZLhrqKalh7j+kjgPna1h5LQMSMwns4tB4ww2yQ=="
   "resolved" "https://registry.npmjs.org/react-toastify/-/react-toastify-9.0.8.tgz"

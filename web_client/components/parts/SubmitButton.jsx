@@ -1,12 +1,18 @@
 import React from 'react'
-
+import ReactLoading from "react-loading"
 function Button({isLoading, pressed,  children}) {
   return (
-    <button  className="btn btn-primary w-25"  type="submit"  disabled={isLoading}>
-        <span className="spinner-grow spinner-grow-sm spinner-primary" role="status" hidden={!isLoading}></span>
+    <button onClick={pressed}  className="btn btn-primary w-25"  type="submit"  disabled={isLoading}>
+        
         {
             children
         }
+        <span hidden={!isLoading}>
+          <span className="d-flex justify-content-center">
+            <ReactLoading  color="white"  type="cylon"  height={20} width={20}/>
+          </span>
+          
+        </span>
     </button>  
   )
 }

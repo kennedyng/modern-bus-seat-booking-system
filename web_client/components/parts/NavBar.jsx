@@ -3,7 +3,7 @@ import Link from "next/link"
 import { useSession, signIn, signOut } from "next-auth/react"
 function NavBar() {
    const {data: session } = useSession();
- console.log(session)
+
  
 
   return (
@@ -26,22 +26,22 @@ function NavBar() {
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Operator
                     </a>
-                        <ul className="dropdown-menu  rounded-0 text-center ">
+                        <ul className="dropdown-menu  rounded-0  ">
                             {
                                 !session && (
-                                <>
+                                <div>
                                     <Link href="/operator/auth/login">
                                         <a className="dropdown-item text-muted" >Login</a>
                                     </Link>
                                     <Link href="/operator/auth/register">
                                         <a className="dropdown-item text-muted" >Register</a>
                                     </Link>
-                                </>
+                                </div>
                                 )
                             }
                             {
                                 session && (
-                                <>
+                                <div>
                                     <Link href="/operator">
                                         <a className="dropdown-item text-muted" >Management</a>
                                     </Link>
@@ -55,7 +55,7 @@ function NavBar() {
                                         <a className="dropdown-item text-muted" >Bus Management</a>
                                     </Link>
                                     <a  onClick={() => signOut()} className="dropdown-item btn btn-link text-danger" >signout</a>
-                                </>
+                                </div>
                                 )
                             }
                         </ul>
@@ -85,3 +85,6 @@ function NavBar() {
 }
 
 export default NavBar
+
+
+
