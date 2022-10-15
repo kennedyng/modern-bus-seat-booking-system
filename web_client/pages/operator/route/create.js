@@ -8,8 +8,8 @@ import SubmitButton from "../../../components/parts/SubmitButton";
 import { towns } from "../../../data/station";
 function CreateRoute() {
   const [validated, setValidated] = useState(false);
-  const [startingPoint, bindStartingPoint] = useInput("lusaka");
-  const [endingPoint, bindEndingPoint] = useInput("ndola");
+  const [startingPoint, bindStartingPoint] = useInput("");
+  const [endingPoint, bindEndingPoint] = useInput("");
   const [fare, bindFare] = useInput();
 
   const [isPosting, setIsPosting] = useState(false);
@@ -84,9 +84,16 @@ function CreateRoute() {
                 className="input-group-text bg-primary text-white"
                 id="inputGroup-sizing-default"
               >
-                Starting Point
+                Origin <i className="bi bi-geo-fill"></i>
               </span>
-              <select {...bindStartingPoint} className="form-select">
+              <select
+                {...bindStartingPoint}
+                className="form-select fw-light text-center"
+                required
+              >
+                <option value="" disabled>
+                  select destination
+                </option>
                 {stations.map((station) => (
                   <option key={station.id} value={station.point}>
                     {station.point}
@@ -100,9 +107,16 @@ function CreateRoute() {
                 className="input-group-text bg-primary text-white"
                 id="inputGroup-sizing-default"
               >
-                Ending Point
+                Destination <i className="bi bi-geo-fill"></i>
               </span>
-              <select {...bindEndingPoint} className="form-select" required>
+              <select
+                {...bindEndingPoint}
+                className="form-select fw-light text-center"
+                required
+              >
+                <option value="" disabled>
+                  select destination
+                </option>
                 {stations.map((station) => (
                   <option key={station.id} value={station.point}>
                     {station.point}
@@ -116,7 +130,7 @@ function CreateRoute() {
                 className="input-group-text bg-primary text-white"
                 id="inputGroup-sizing-default"
               >
-                Fare In Kwatch
+                Fare
               </span>
               <input
                 {...bindFare}

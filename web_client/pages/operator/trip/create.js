@@ -48,7 +48,6 @@ function CreateTrip() {
   const createTrip = async () => {
     setIsPosting(true);
 
-    console.log(busId, routeId, dateTime.$d);
     const data = {
       busId: busId,
       routeId: routeId,
@@ -82,6 +81,16 @@ function CreateTrip() {
     event.preventDefault();
     if (form.checkValidity() === false) {
       toast.warn("invalid inputs. double check the form");
+      if (!routes.totalPages) {
+        toast.info(
+          "you do not have any routes info. go to route route management to add route information"
+        );
+      }
+      if (!buses.totalPages) {
+        toast.info(
+          "you do have any bus information. go to bus management to add bus information"
+        );
+      }
       event.stopPropagation();
     } else {
       //registration form is valid register
@@ -105,7 +114,7 @@ function CreateTrip() {
                 className="input-group-text bg-primary text-white"
                 id="inputGroup-sizing-default"
               >
-                Route
+                route <i className="bi bi-pin-map"></i>
               </span>
               <select
                 disabled={!routes && !routesError}
@@ -132,7 +141,7 @@ function CreateTrip() {
                 className="input-group-text bg-primary text-white"
                 id="inputGroup-sizing-default"
               >
-                Bus
+                bus
               </span>
               <select
                 {...bindBusId}
@@ -181,7 +190,7 @@ function CreateTrip() {
         </div>
 
         <div className="d-flex justify-content-center my-2">
-          <SubmitButton isLoading={isPosting}>Create Trip</SubmitButton>
+          <SubmitButton isLoading={isPosting}>create trip</SubmitButton>
         </div>
       </Form>
     </div>

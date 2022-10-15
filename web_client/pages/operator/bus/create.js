@@ -70,7 +70,7 @@ function CreateBus() {
                 className="input-group-text bg-primary text-white"
                 id="inputGroup-sizing-default"
               >
-                Bus Number Plate
+                plate number
               </span>
               <input
                 {...bindPlateNumber}
@@ -91,7 +91,7 @@ function CreateBus() {
                 className="input-group-text bg-primary text-white"
                 id="inputGroup-sizing-default"
               >
-                Total Capacity
+                total capacity
               </span>
               <input
                 {...bindTotalCapacity}
@@ -108,9 +108,7 @@ function CreateBus() {
         </div>
 
         <div className="d-flex justify-content-center my-2">
-          <SubmitButton pressed={createBus} isLoading={isPosting}>
-            Create Bus
-          </SubmitButton>
+          <SubmitButton isLoading={isPosting}>create bus</SubmitButton>
         </div>
       </Form>
     </div>

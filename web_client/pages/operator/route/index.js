@@ -7,6 +7,7 @@ import useSWR from "swr";
 import LoadingPage from "../../../components/LoadingPage";
 import { Pagination } from "@mui/material";
 import Link from "next/link";
+import EmptyData from "../../../components/parts/EmptyData";
 
 function Route({ initialData }) {
   const [page, setPage] = React.useState(1);
@@ -35,9 +36,6 @@ function Route({ initialData }) {
   return (
     <div className="container">
       <div className="my-4">
-        <h4 className="text-muted text-center">Route Management</h4>
-        <p className="text-muted text-center">create update the route</p>
-
         <div className="d-flex justify-content-center">
           <div
             className="btn-group"
@@ -45,24 +43,31 @@ function Route({ initialData }) {
             aria-label="Basic outlined example"
           >
             <Link href="/operator">
-              <a className="nav-link">
-                <button type="button" className="rounded-0 btn btn-dark">
-                  Management
+              <a>
+                <button type="button" className="btn btn-dark rounded-0">
+                  <i className="bi bi-arrow-left"> </i>
+                  Manage <i className="bi bi-journal-text"> </i>
                 </button>
               </a>
             </Link>
+
             <Link href="/operator/route/create">
-              <a className="nav-link">
-                <button type="button" className="rounded-0 btn btn-dark">
-                  Add New Route
+              <a>
+                <button type="button" className="btn btn-success rounded-0">
+                  <i className="bi bi-plus-circle"> </i>
+                  Add Route <i className="bi bi-pencil-square"></i>
                 </button>
               </a>
             </Link>
           </div>
         </div>
       </div>
+
+      <h4 className="text-muted text-center">Route Management</h4>
+      <p className="text-muted text-center">create update the route</p>
       <div className="mb-2">
         <div className="row g-2">
+          {!data.totalPages && <EmptyData />}
           {data != undefined &&
             data.data.map((routeData) => (
               <div className="col-md-6" key={routeData.id}>

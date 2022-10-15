@@ -7,6 +7,7 @@ import axios from "axios";
 import useToken from "../../../hooks/useToken";
 import useSWR from "swr";
 import LoadingPage from "../../../components/LoadingPage";
+import EmptyData from "../../../components/parts/EmptyData";
 
 function Trip({ initialData }) {
   const [page, setPage] = React.useState(1);
@@ -36,9 +37,6 @@ function Trip({ initialData }) {
   return (
     <div className="container">
       <div className="my-4">
-        <h4 className="text-muted text-center fw-light">Trip Management</h4>
-        <p className="text-muted text-center">create update the Trips</p>
-
         <div className="d-flex justify-content-center">
           <div
             className="btn-group"
@@ -48,8 +46,8 @@ function Trip({ initialData }) {
             <Link href="/operator">
               <a>
                 <button type="button" className="btn btn-dark rounded-0">
-                  <i className="bi bi-journal-text"> </i>
-                  Manage
+                  <i className="bi bi-arrow-left"> </i>
+                  Manage <i className="bi bi-journal-text"> </i>
                 </button>
               </a>
             </Link>
@@ -58,14 +56,17 @@ function Trip({ initialData }) {
               <a>
                 <button type="button" className="btn btn-success rounded-0">
                   <i className="bi bi-plus-circle"> </i>
-                  Add Trip
+                  Add Trip <i className="bi bi-pencil-square"></i>
                 </button>
               </a>
             </Link>
           </div>
         </div>
       </div>
+      <h4 className="text-muted text-center fw-light">Trip Management</h4>
+      <p className="text-muted text-center">create new trips</p>
       <div className="py-4">
+        {!data.totalPages && <EmptyData />}
         <div className="row g-2">
           {data != undefined &&
             data.data.map((tripData) => (
