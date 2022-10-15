@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getSession } from "next-auth/react";
-import BusCard from "../../../../components/parts/BusCard";
 import DeleteButton from "../../../../components/parts/SubmitButton";
 import useToken from "../../../../hooks/useToken";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import Router from "next/router";
+import LoadingPage from "../../../../components/LoadingPage";
 function DeleteRoute({ data }) {
   const token = useToken();
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +33,9 @@ function DeleteRoute({ data }) {
         toast.error("failed try again");
       });
   };
+  if (!data && !error) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="container">

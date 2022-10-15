@@ -115,7 +115,7 @@ export async function getServerSideProps({ req, query }) {
 
   return {
     props: {
-      data: fetchData.data,
+      data: fetchData.data ? fetchData.data : {},
     },
   };
 }

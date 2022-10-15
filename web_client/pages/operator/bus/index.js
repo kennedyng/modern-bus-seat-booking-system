@@ -17,7 +17,12 @@ function Bus({ initialData }) {
   const token = useToken();
 
   const { data, error } = useSWR(
-    [`${process.env.NEXT_PUBLIC_BACKEND_URL}/bus/view/all?page=${page}`, token],
+    token
+      ? [
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/bus/view/all?page=${page}`,
+          token,
+        ]
+      : null,
     {
       initialData: initialData,
       revalidateOnMount: true,
