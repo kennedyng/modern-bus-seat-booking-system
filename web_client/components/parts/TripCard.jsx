@@ -46,7 +46,11 @@ function Card({ data }) {
             >
               <Link href={`/operator/trip/delete/${data.id}`}>
                 <a>
-                  <button type="button" className="btn btn-outline-danger">
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger rounded-0"
+                  >
+                    <i className="bi bi-trash"></i>
                     delete
                   </button>
                 </a>

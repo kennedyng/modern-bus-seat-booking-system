@@ -12,24 +12,30 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import TextField from "@mui/material/TextField";
 import useToken from "../../../hooks/useToken";
 import useSWR from "swr";
+import ReactLoading from "react-loading";
 
 function CreateTrip() {
   const [validated, setValidated] = useState(false);
-  const [routeId, bindRouteId] = useInput("1");
-  const [busId, bindBusId] = useInput("1");
   const [isPosting, setIsPosting] = useState(false);
+  const [routeId, bindRouteId] = useInput();
+  const [busId, bindBusId] = useInput();
+
   const [dateTime, setDateTime] = useState(dayjs(new Date()));
   const token = useToken();
 
   const { data: routes, error: routesError } = useSWR(
-    [`${process.env.NEXT_PUBLIC_BACKEND_URL}/route/view/all?size=20`, token],
+    token
+      ? [`${process.env.NEXT_PUBLIC_BACKEND_URL}/route/view/all?size=50`, token]
+      : null,
     {
       revalidateOnMount: true,
     }
   );
 
   const { data: buses, error: busesError } = useSWR(
-    [`${process.env.NEXT_PUBLIC_BACKEND_URL}/bus/view/all?size=20`, token],
+    token
+      ? [`${process.env.NEXT_PUBLIC_BACKEND_URL}/bus/view/all?size=50`, token]
+      : null,
     {
       revalidateOnMount: true,
     }
@@ -41,10 +47,12 @@ function CreateTrip() {
 
   const createTrip = async () => {
     setIsPosting(true);
+
+    console.log(busId, routeId, dateTime.$d);
     const data = {
       busId: busId,
       routeId: routeId,
-      departing_time: new Date(),
+      departing_time: dateTime.$d,
     };
 
     const config = {
@@ -99,7 +107,16 @@ function CreateTrip() {
               >
                 Route
               </span>
-              <select {...bindRouteId} className="form-select">
+              <select
+                disabled={!routes && !routesError}
+                {...bindRouteId}
+                className="form-select text-center fw-light"
+                required
+              >
+                <option value="" disabled>
+                  choose route
+                </option>
+
                 {routes &&
                   !routesError &&
                   routes.data.map((route) => (
@@ -117,26 +134,46 @@ function CreateTrip() {
               >
                 Bus
               </span>
-              <select {...bindBusId} className="form-select">
+              <select
+                {...bindBusId}
+                disabled={!buses && !busesError}
+                className="form-select text-center fw-light"
+                required
+              >
+                <option value="" disabled>
+                  select bus
+                </option>
                 {buses &&
                   !busesError &&
                   buses.data.map((bus) => (
-                    <option key={bus.id} value={bus.id}>
+                    <option
+                      className="text-primary"
+                      key={bus.id}
+                      value={bus.id}
+                    >
                       {bus.id} - {bus.plate_number}
                     </option>
                   ))}
               </select>
             </div>
 
-            <div className="input-group mb-3 d-flex justify-content-center">
+            <div className="input-group mb-3 ">
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
-                  label="departing time"
+                  label="Departing Time"
                   value={dateTime}
                   onChange={handleDateTime}
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => (
+                    <TextField
+                      variant="outlined"
+                      helperText="select time your trip will start"
+                      label="Time"
+                      fullWidth
+                      size="small"
+                      {...params}
+                    />
+                  )}
                   minDate={dayjs(new Date())}
-                  className="text-primary h-15"
                 />
               </LocalizationProvider>
             </div>

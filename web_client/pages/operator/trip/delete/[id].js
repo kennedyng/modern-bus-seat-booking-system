@@ -6,7 +6,7 @@ import useToken from "../../../../hooks/useToken";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import Router from "next/router";
-import dayjs from "dayjs";
+
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
@@ -47,7 +47,7 @@ function DeleteTrip({ data }) {
           THE FOLLOWING TRIP INFORMATION WILL BE DELETED PERMANENTLY
         </h4>
 
-        <table className="">
+        <table>
           <thead>
             <tr>
               <th>ID</th>
@@ -57,7 +57,7 @@ function DeleteTrip({ data }) {
             </tr>
           </thead>
 
-          <tbody>
+          <tbody className="table-striped">
             <tr>
               <td>{data.id}</td>
               <td>
@@ -68,9 +68,10 @@ function DeleteTrip({ data }) {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DateTimePicker
                     onChange={() => null}
-                    readOnly
                     value={data.departing_time}
-                    renderInput={(params) => <TextField {...params} />}
+                    renderInput={(params) => (
+                      <TextField size="small" variant="standard" {...params} />
+                    )}
                   />
                 </LocalizationProvider>
               </td>

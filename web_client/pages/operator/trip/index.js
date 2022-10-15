@@ -36,7 +36,7 @@ function Trip({ initialData }) {
   return (
     <div className="container">
       <div className="my-4">
-        <h4 className="text-muted text-center">Trip Management</h4>
+        <h4 className="text-muted text-center fw-light">Trip Management</h4>
         <p className="text-muted text-center">create update the Trips</p>
 
         <div className="d-flex justify-content-center">
@@ -48,7 +48,8 @@ function Trip({ initialData }) {
             <Link href="/operator">
               <a>
                 <button type="button" className="btn btn-dark rounded-0">
-                  Management
+                  <i className="bi bi-journal-text"> </i>
+                  Manage
                 </button>
               </a>
             </Link>
@@ -56,7 +57,8 @@ function Trip({ initialData }) {
             <Link href="/operator/trip/create">
               <a>
                 <button type="button" className="btn btn-success rounded-0">
-                  Add New Trip
+                  <i className="bi bi-plus-circle"> </i>
+                  Add Trip
                 </button>
               </a>
             </Link>
