@@ -48,7 +48,20 @@ function Card({ data }) {
               </LocalizationProvider>
             </div>
           </div>
-          <div className="col d-flex justify-content-center align-items-center">
+          <div className="col d-flex justify-content-evenly align-items-center flex-column">
+            <div>
+              <h6 className="fw-light text-primary">
+                total booked {data.receipt.length}
+              </h6>
+              <h6 className="fw-light text-danger">
+                sold K
+                {data.receipt.reduce(
+                  (total, currentValue) =>
+                    (total = total + currentValue.amount_payed),
+                  0
+                )}
+              </h6>
+            </div>
             <div
               className="btn-group"
               role="group"
