@@ -28,7 +28,7 @@ function CreateBus() {
     axios
       .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/bus/create/", data, config)
       .then((response) => {
-        toast.success(`${data.plate_number} is now registered`);
+        toast.success(`${data.plate_number} is created`);
         setIsPosting(false);
       })
       .catch((error) => {

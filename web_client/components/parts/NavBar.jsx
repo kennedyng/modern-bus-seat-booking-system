@@ -95,6 +95,14 @@ function NavBar() {
                 </Link>
               </ul>
             </li>
+
+            <li className="nav-item">
+              <Link href="https://ebus-api.herokuapp.com/documentation/">
+                <a target="_blank" className="nav-link">
+                  Developer
+                </a>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

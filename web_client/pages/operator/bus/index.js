@@ -64,7 +64,7 @@ function Bus({ initialData }) {
         </div>
       </div>
       <h4 className="text-muted text-center">Bus Management</h4>
-      <p className="text-muted text-center">create update the route</p>
+      <p className="text-muted text-center">create and mange operator buses</p>
       <div className="py-4">
         <div className="row g-2">
           {!data.totalPages && <EmptyData />}

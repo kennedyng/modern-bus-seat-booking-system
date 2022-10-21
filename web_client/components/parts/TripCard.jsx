@@ -13,7 +13,7 @@ function Card({ data }) {
             <div className="py-2">
               <h6 className="text-secondary">
                 <span className="text-white fw-bolder btn btn-dark rounded-4">
-                  #{data.id}
+                  # {data.id}
                 </span>
               </h6>
             </div>
@@ -51,10 +51,10 @@ function Card({ data }) {
           <div className="col d-flex justify-content-evenly align-items-center flex-column">
             <div>
               <h6 className="fw-light text-primary">
-                total booked {data.receipt.length}
+                booked {data.receipt.length}
               </h6>
               <h6 className="fw-light text-danger">
-                sold K
+                total amount K
                 {data.receipt.reduce(
                   (total, currentValue) =>
                     (total = total + currentValue.amount_payed),

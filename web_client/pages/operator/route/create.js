@@ -41,7 +41,7 @@ function CreateRoute() {
       )
       .then((response) => {
         toast.success(
-          `${data.starting_point} - ${data.ending_point} is created successfully`
+          `${data.starting_point} - ${data.ending_point} route is created`
         );
         setIsPosting(false);
       })

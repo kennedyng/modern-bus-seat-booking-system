@@ -21,6 +21,7 @@ function CreateTrip() {
   const [busId, bindBusId] = useInput();
 
   const [dateTime, setDateTime] = useState(dayjs(new Date()));
+
   const token = useToken();
 
   const { data: routes, error: routesError } = useSWR(
@@ -62,11 +63,10 @@ function CreateTrip() {
     axios
       .post(process.env.NEXT_PUBLIC_BACKEND_URL + "/trip/create/", data, config)
       .then((response) => {
-        toast.success(` is created successfully`);
+        toast.success(`ID ${data.busId} Trip is created`);
         setIsPosting(false);
       })
       .catch((error) => {
-        console.log(error);
         setIsPosting(false);
         try {
           toast.error(`something went wrong. ${error.message}. \n try again`);
