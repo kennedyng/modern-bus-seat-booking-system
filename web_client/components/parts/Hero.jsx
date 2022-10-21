@@ -9,11 +9,11 @@ function Hero() {
           CLOUD E-BUS SEAT PLATFORM
         </p>
         <p className="h2 fw-lighter ">
-          Manage and Sell Passenger Seat Ticket Smartly
+          Manage and Sell Bus Seat Tickets Smartly
         </p>
         <button
           onClick={() => Router.push("/operator/auth/register")}
-          className="btn btn-primary my-4 fw-bolder btn-lg rounded-0 px-4"
+          className="btn btn-primary my-4 fw-bolder btn-lg rounded-0 px-4 "
         >
           JOIN OUR PLATFORM
         </button>

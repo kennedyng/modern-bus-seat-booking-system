@@ -8,7 +8,7 @@ function NavBar() {
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid fw-light">
         <Link href="/">
-          <a className="navbar-brand">CloudE-BUSPLATFORM</a>
+          <a className="navbar-brand">CloudE-BUS PLATFORM</a>
         </Link>
         <button
           className="navbar-toggler"
