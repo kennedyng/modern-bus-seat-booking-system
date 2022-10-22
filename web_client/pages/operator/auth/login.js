@@ -25,7 +25,7 @@ function Login() {
       .then((response) => {
         setIsLoading(false);
         if (response.status == 200) {
-          toast.success(email + ". Welcome to the Platform. Enjoy you vist");
+          toast.success(email + ". Welcome to the Platform. Enjoy your vist");
           Router.push("/operator");
         } else {
           toast.error("Authentication failed. " + response.error);

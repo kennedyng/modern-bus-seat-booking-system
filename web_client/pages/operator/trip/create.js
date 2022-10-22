@@ -52,7 +52,7 @@ function CreateTrip() {
     const data = {
       busId: busId,
       routeId: routeId,
-      departing_time: dateTime.$d,
+      departing_time: new Date(),
     };
 
     console.log("data", data);
