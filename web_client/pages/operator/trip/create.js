@@ -55,6 +55,8 @@ function CreateTrip() {
       departing_time: dateTime.$d,
     };
 
+    console.log("data", data);
+
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,

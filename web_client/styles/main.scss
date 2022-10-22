@@ -1,3 +1,4 @@
+
 .hero {
     height: 70vh;
     background-size: cover;
@@ -9,5 +10,11 @@
     background: rgba(0, 0, 0, 0.39);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(6.5px);
+
+}
+.card:hover {
+    transition: 1s;
+    box-shadow: none !important;
+   
 
 }
