@@ -1,9 +1,10 @@
-const { PrismaClient } = require("@prisma/client");
+// const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
+const prisma = require("../../utils/prisma");
 const app = require("express")();
 
 module.exports = {
@@ -33,6 +34,7 @@ module.exports = {
             .status(200)
             .json({ message: "authorization successfull", token });
         } else {
+          console.log(error);
           return res.status(500).json({ message: "auth failed" });
         }
       } else {
