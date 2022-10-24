@@ -15,7 +15,7 @@ const operatorTripsQuery = {
         operatorId: Number(req.userData.operatorId),
       },
       orderBy: {
-        departing_time: "desc",
+        id: "desc",
       },
       include: {
         Route: true,
