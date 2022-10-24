@@ -5,6 +5,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import TextField from "@mui/material/TextField";
 function Card({ data }) {
+  const subtractHours = (date, hours) => {
+    date.setHours(date.getHours() - hours);
+    return date;
+  };
+
+  console.log(subtractHours(new Date(data.departing_time), 1));
   return (
     <div className="card rounded-0 shadow ">
       <div className="card-body">
@@ -12,8 +18,15 @@ function Card({ data }) {
           <div className="col d-flex justify-content-center align-items-center">
             <div className="py-2">
               <h6 className="text-secondary">
-                <span className="text-white fw-bolder btn btn-dark rounded-4">
-                  # {data.id}
+                <span
+                  className={`text-white fw-bolder btn rounded-4 ${
+                    subtractHours(new Date(data.departing_time), 1) <=
+                    new Date()
+                      ? "btn-danger"
+                      : "btn-success"
+                  }`}
+                >
+                  #{data.id}
                 </span>
               </h6>
             </div>

@@ -14,13 +14,18 @@ import useToken from "../../../hooks/useToken";
 import useSWR from "swr";
 import ReactLoading from "react-loading";
 
+const addHours = (date, hours) => {
+  date.setHours(date.getHours() + hours);
+  return date;
+};
+
 function CreateTrip() {
   const [validated, setValidated] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
   const [routeId, bindRouteId] = useInput();
   const [busId, bindBusId] = useInput();
 
-  const [dateTime, setDateTime] = useState(dayjs(new Date()));
+  const [dateTime, setDateTime] = useState(dayjs(addHours(new Date(), 2)));
 
   const token = useToken();
 
