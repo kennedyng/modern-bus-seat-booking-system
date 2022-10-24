@@ -1,3 +1,8 @@
+const addHours = (date, hours) => {
+  date.setHours(date.getHours() + hours);
+  return date;
+};
+
 const operatorTripsQuery = {
   totalQuery: (req) => {
     return {
@@ -27,6 +32,7 @@ const operatorTripsQuery = {
   intialDataSize: 5,
   model: "trip",
 };
+
 const tripsQuery = {
   totalQuery: (req) => {
     return {
@@ -38,6 +44,9 @@ const tripsQuery = {
           ],
         },
         operatorId: Number(req.params.operatorId),
+        departing_time: {
+          gte: addHours(new Date(), 1),
+        },
       },
     };
   },
@@ -51,6 +60,9 @@ const tripsQuery = {
           ],
         },
         operatorId: Number(req.params.operatorId),
+        departing_time: {
+          gte: addHours(new Date(), 1),
+        },
       },
       orderBy: {
         departing_time: "desc",

@@ -22,7 +22,7 @@ function Card({ data }) {
                   className={`text-white fw-bolder btn rounded-4 ${
                     subtractHours(new Date(data.departing_time), 1) <=
                     new Date()
-                      ? "btn-danger"
+                      ? "btn-dark"
                       : "btn-success"
                   }`}
                 >
