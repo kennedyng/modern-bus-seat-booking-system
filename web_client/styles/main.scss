@@ -1,4 +1,4 @@
-
+@import "./colors.scss";
 .hero {
     height: 70vh;
     background-size: cover;
@@ -12,9 +12,31 @@
     backdrop-filter: blur(6.5px);
 
 }
+
+
+.card {
+    transition: 1s;
+   
+
+}
+
 .card:hover {
     transition: 1s;
     box-shadow: none !important;
+    border-radius: 10px;
+    background-color: rgba($color: $primary, $alpha: 0.1);
+
+   
+
+}
+
+.card-rounded {
+    border-radius: 20rem !important;
+}
+
+.nav-link:hover {
+    color: $primary;
+    transition: 1s;
    
 
 }

@@ -8,7 +8,7 @@ function NavBar() {
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid fw-light">
         <Link href="/">
-          <a className="navbar-brand">CloudE-BUS PLATFORM</a>
+          <a className="navbar-brand text-secondary">CloudE-BUS PLATFORM</a>
         </Link>
         <button
           className="navbar-toggler"
@@ -38,38 +38,38 @@ function NavBar() {
               >
                 Operator
               </a>
-              <ul className="dropdown-menu  rounded-0  ">
+              <ul className="dropdown-menu  bg-light rounded-0 border-0  ">
                 {!session && (
                   <div>
                     <Link href="/operator/auth/login">
-                      <a className="dropdown-item text-muted">Login</a>
+                      <a className="dropdown-item text-muted">login</a>
                     </Link>
                     <Link href="/operator/auth/register">
-                      <a className="dropdown-item text-muted">Register</a>
+                      <a className="dropdown-item text-muted">register</a>
                     </Link>
                   </div>
                 )}
                 {session && (
                   <div>
                     <Link href="/operator">
-                      <a className="dropdown-item text-muted">Management</a>
+                      <a className="dropdown-item text-muted">management</a>
                     </Link>
                     <Link href="/operator/trip">
                       <a className="dropdown-item text-muted">
-                        Trip Management
+                        trip management
                       </a>
                     </Link>
                     <Link href="/operator/route">
                       <a className="dropdown-item text-muted">
-                        Route Management
+                        route management
                       </a>
                     </Link>
                     <Link href="/operator/bus">
-                      <a className="dropdown-item text-muted">Bus Management</a>
+                      <a className="dropdown-item text-muted">bus management</a>
                     </Link>
                     <hr />
                     <div
-                      className="dropdown-item text-muted text-center"
+                      className="dropdown-item text-primary text-center "
                       onClick={() => signOut()}
                     >
                       signout
@@ -89,9 +89,9 @@ function NavBar() {
               >
                 Passenger
               </a>
-              <ul className="dropdown-menu  rounded-0">
+              <ul className="dropdown-menu  rounded-0 bg-light rounded-0 border-0">
                 <Link href="/passenger/register">
-                  <a className="dropdown-item text-muted">Register</a>
+                  <a className="dropdown-item text-muted">register</a>
                 </Link>
               </ul>
             </li>
