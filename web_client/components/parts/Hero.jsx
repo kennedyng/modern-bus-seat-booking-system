@@ -1,5 +1,6 @@
 import React from "react";
 import Router from "next/router";
+import { Typewriter } from "react-simple-typewriter";
 
 function Hero() {
   return (
@@ -9,7 +10,19 @@ function Hero() {
           CLOUD E-BUS SEAT PLATFORM
         </p>
         <p className="h2 fw-lighter ">
-          Manage and Sell Bus Seat Tickets Smartly
+          <Typewriter
+            words={[
+              "Manage And Sell Bus Seat Tickets Smartly",
+              "Next Generation Of Buying Seat Tickets",
+              "Be Sell Digitally Smart!",
+            ]}
+            loop={false}
+            cursor
+            cursorStyle="."
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={2000}
+          />
         </p>
         <button
           onClick={() => Router.push("/operator/auth/register")}

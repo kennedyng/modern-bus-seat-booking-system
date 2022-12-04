@@ -2,6 +2,7 @@ import React from "react";
 import SimpleCard from "../../components/parts/SimpleCard";
 import Link from "next/link";
 import travelers from "../../public/svg/travelers.svg";
+
 import Image from "next/image";
 const manageTripData = {
   title: "TRIPS",

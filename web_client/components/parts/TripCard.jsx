@@ -19,7 +19,7 @@ function Card({ data }) {
             <div className="py-2">
               <h6 className="text-secondary">
                 <span
-                  className={`text-white fw-bolder btn rounded-4 ${
+                  className={`text-white fw-bolder btn rounded-circle ${
                     subtractHours(new Date(data.departing_time), 1) <=
                     new Date()
                       ? "btn-dark"

@@ -97,9 +97,9 @@ function NavBar() {
             </li>
 
             <li className="nav-item">
-              <Link href="https://ebus-api.herokuapp.com/documentation/">
-                <a target="_blank" className="nav-link">
-                  Developer
+              <Link href="https://web-production-e377.up.railway.app/documentation">
+                <a target="_blank" className="nav-link text-primary fw-bold">
+                  Developer API
                 </a>
               </Link>
             </li>

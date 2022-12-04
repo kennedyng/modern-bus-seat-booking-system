@@ -6,7 +6,7 @@ function RouteCard({ data }) {
       <div className="card-body">
         <div className="row">
           <div className="col d-flex justify-content-center align-items-center">
-            <button className="btn btn-dark rounded-4">{data.id}</button>
+            <button className="btn btn-dark rounded-circle">#{data.id}</button>
           </div>
           <div className="col text-center ">
             <h6 className="text-muted text-uppercase">{data.starting_point}</h6>
