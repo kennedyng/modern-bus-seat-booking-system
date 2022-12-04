@@ -13,12 +13,12 @@ function Hero() {
           <Typewriter
             words={[
               "Manage And Sell Bus Seat Tickets Smartly",
-              "Next Generation Of Buying Seat Tickets",
-              "Be Sell Digitally Smart!",
+              "Next Generation Electronic Society",
+              "Digitally Smart!",
             ]}
             loop={false}
             cursor
-            cursorStyle="."
+            cursorStyle="|"
             typeSpeed={70}
             deleteSpeed={50}
             delaySpeed={2000}
