@@ -64,8 +64,9 @@ function Card({ data }) {
           <div className="col d-flex justify-content-evenly align-items-center flex-column">
             <div>
               <h6 className="fw-light text-primary">
-                booked {data.receipt.length}
+                transactions {data.receipt.length}
               </h6>
+
               <h6 className="fw-light text-danger">
                 total amount K
                 {data.receipt.reduce(
