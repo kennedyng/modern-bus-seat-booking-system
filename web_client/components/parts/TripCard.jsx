@@ -10,7 +10,6 @@ function Card({ data }) {
     return date;
   };
 
-  console.log(subtractHours(new Date(data.departing_time), 1));
   return (
     <div className="card rounded-0 shadow ">
       <div className="card-body">
@@ -65,6 +64,14 @@ function Card({ data }) {
             <div>
               <h6 className="fw-light text-primary">
                 transactions {data.receipt.length}
+              </h6>
+              <h6 className="fw-light text-primary">
+                booked{" "}
+                {data.receipt.reduce(
+                  (total, currentValue) =>
+                    (total = total + (currentValue.method_of_pay ? 1 : 0)),
+                  0
+                )}
               </h6>
 
               <h6 className="fw-light text-danger">
