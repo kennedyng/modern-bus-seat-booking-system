@@ -13,9 +13,7 @@ function About() {
         The main objective of the web applicaiton is to be used by bus{" "}
         <b>operators to manage their trips </b>
         and also to used by{" "}
-        <b>Passengers to Register and Manage ther Profiles</b>. This project is
-        a final year project developed by a team of developers.
-      </p>
+        <b>Passengers to Register and Manage ther Profiles</b>
       <hr />
       <h4 className="fw-light text-muted">
         {stations.length} Supported Stations Within Zambia
