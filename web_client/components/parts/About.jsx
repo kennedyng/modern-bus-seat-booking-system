@@ -14,6 +14,7 @@ function About() {
         <b>operators to manage their trips </b>
         and also to used by{" "}
         <b>Passengers to Register and Manage ther Profiles</b>
+      </p>
       <hr />
       <h4 className="fw-light text-muted">
         {stations.length} Supported Stations Within Zambia
