@@ -97,7 +97,9 @@ function NavBar() {
             </li>
 
             <li className="nav-item">
-              <Link href="https://web-production-e377.up.railway.app/documentation">
+              <Link
+                href={`${process.env.NEXT_PUBLIC_BACKEND_URL}/documentation`}
+              >
                 <a target="_blank" className="nav-link text-primary fw-bold">
                   Developer API
                 </a>
