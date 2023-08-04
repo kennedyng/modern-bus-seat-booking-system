@@ -28,7 +28,7 @@ const swaggerDocumentation = {
   },
   servers: [
     {
-      url: "https://ebus-api.herokuapp.com",
+      url: "https://modern-ebus.adaptable.app",
       description: "production development",
     },
     {
